@@ -14,8 +14,14 @@ Outros comandos: `pnpm build`, `pnpm start`, `pnpm lint`.
 
 ## Variáveis de ambiente
 
-Copie `.env.example` para `.env.local`. Todas são opcionais — sem elas o
-formulário de contato cai para `mailto:` com a mensagem já preenchida.
+Copie `.env.example` para `.env.local`. Todas são opcionais — sem elas o site
+sobe inteiro, com o formulário de contato caindo para `mailto:`.
+
+| Variável | Efeito se ausente |
+| --- | --- |
+| `NEXT_PUBLIC_SITE_URL` | Canonical/sitemap usam `https://www.desenvol.com.br` |
+| `RESEND_API_KEY` | Formulário devolve `mailto:` preenchido |
+| `RESEND_FROM` | Usa o remetente de teste do Resend |
 
 ## Tema por rota
 
@@ -90,5 +96,18 @@ Marcadas no código como `// TODO(cliente):`:
 
 ## Deploy
 
-Vercel. Todas as rotas são estáticas; a única parte dinâmica é a server action
+Vercel, com detecção automática de Next.js — não há `vercel.json` porque não é
+preciso. Todas as rotas são estáticas; a única parte dinâmica é a server action
 do formulário de contato.
+
+O `packageManager` do `package.json` fixa o pnpm 11.17.0, a mesma versão que
+gerou o `pnpm-lock.yaml`. Isso importa: as aprovações de build scripts (sharp,
+unrs-resolver) ficam em `pnpm-workspace.yaml` sob a chave `allowBuilds`, que só
+existe a partir do pnpm 11.
+
+Ao criar o projeto na Vercel:
+
+1. Root Directory: a raiz do repositório (padrão) — o `package.json` está nela
+2. Framework Preset: Next.js (detectado sozinho)
+3. Variáveis de ambiente: as da tabela acima, conforme forem sendo obtidas
+4. Depois de apontar o domínio, definir `NEXT_PUBLIC_SITE_URL` para ele

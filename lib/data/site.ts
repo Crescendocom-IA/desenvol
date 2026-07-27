@@ -3,14 +3,24 @@
  * Fonte única para footer, página de contato e metadados.
  */
 
+/**
+ * Base de canonical, sitemap e og:url.
+ *
+ * TODO(cliente): confirmar o domínio final de produção. Enquanto isso não
+ * acontece, `NEXT_PUBLIC_SITE_URL` permite corrigir o domínio direto no painel
+ * da Vercel, sem mexer no código.
+ */
+const siteUrl = (
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.desenvol.com.br"
+).replace(/\/$/, "");
+
 export const siteConfig = {
   name: "Desenvol Informática",
   shortName: "Desenvol",
   tagline: "Soluções de gestão desde 1994",
   description:
     "Desde 1994, a Desenvol Informática desenvolve sistemas de gestão para paróquias, dioceses e tribunais eclesiásticos, e soluções de ERP, NF-e e vendas para empresas.",
-  // TODO(cliente): confirmar o domínio final de produção antes do deploy.
-  url: "https://www.desenvol.com.br",
+  url: siteUrl,
   foundedYear: 1994,
   locale: "pt-BR",
 } as const;
