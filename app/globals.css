@@ -32,7 +32,12 @@
 
 /* ---------------------------------------------------------------------------
    Tema claro
+   `:root` também recebe os tokens claros como piso: em navegadores sem
+   `:has()` (Firefox < 121) o <html> fica no claro em vez de ficar sem tokens.
+   O conteúdo da página continua correto nos dois temas, porque o wrapper do
+   route group declara os seus próprios valores.
 --------------------------------------------------------------------------- */
+:root,
 [data-mode="light"],
 html:has([data-mode="light"]) {
   color-scheme: light;

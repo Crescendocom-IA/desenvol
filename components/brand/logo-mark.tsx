@@ -23,12 +23,16 @@ export function LogoMark({ className, decorative = true }: LogoMarkProps) {
       aria-label={decorative ? undefined : "Símbolo da Desenvol Informática"}
       focusable="false"
     >
-      {/* Arco aberto */}
+      {/*
+        Arco aberto (~220°), com as duas pontas terminando sob o monólito —
+        que é desenhado depois e as encobre, como na logo original.
+      */}
       <path
-        d="M39.6 15.5A21 21 0 1 0 35.6 57.4"
+        d="M34.5 18.15A19 19 0 1 0 34.5 53.85"
         stroke="var(--brand-accent)"
         strokeWidth="3.4"
-        strokeLinecap="round"
+        strokeLinecap="butt"
+        fill="none"
       />
       {/* Monólito */}
       <path
