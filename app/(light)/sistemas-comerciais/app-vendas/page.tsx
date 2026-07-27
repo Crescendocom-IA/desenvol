@@ -1,8 +1,22 @@
-﻿export default function Page() {
+import { Container } from "@/components/layout/container";
+import { RestrictedAccessCard } from "@/components/sections/restricted-access-card";
+import { buildMetadata } from "@/lib/seo";
+
+export const metadata = {
+  ...buildMetadata({
+    title: "App Vendas",
+    description:
+      "Área restrita do aplicativo de vendas da Desenvol Informática. O acesso é liberado aos clientes mediante contato com a nossa equipe.",
+    path: "/sistemas-comerciais/app-vendas",
+  }),
+  // Página sem conteúdo público: não faz sentido indexá-la.
+  robots: { index: false, follow: true },
+};
+
+export default function AppVendasPage() {
   return (
-    <div className="mx-auto max-w-6xl px-6 py-24 md:px-10">
-      <h1 className="font-display text-5xl">App Vendas</h1>
-    </div>
+    <Container className="flex min-h-[60vh] items-center justify-center py-20">
+      <RestrictedAccessCard />
+    </Container>
   );
 }
-
