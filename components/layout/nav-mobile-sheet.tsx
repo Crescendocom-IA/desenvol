@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { Download, ExternalLink, Menu } from "lucide-react";
 
 import { Logo } from "@/components/brand/logo";
+import type { LogoMode } from "@/components/brand/logo-mark";
 import {
   Sheet,
   SheetContent,
@@ -18,7 +19,7 @@ import { clientPortals, supportDownload } from "@/lib/data/external-links";
 import { ctaVariants } from "@/lib/cta";
 import { cn } from "@/lib/utils";
 
-export function NavMobileSheet() {
+export function NavMobileSheet({ mode }: { mode: LogoMode }) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
@@ -42,7 +43,7 @@ export function NavMobileSheet() {
       >
         <SheetHeader className="p-6 pb-2">
           <SheetTitle className="text-left">
-            <Logo />
+            <Logo mode={mode} />
             <span className="sr-only">Menu de navegação</span>
           </SheetTitle>
         </SheetHeader>

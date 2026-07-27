@@ -1,3 +1,5 @@
+import { readFile } from "node:fs/promises";
+import path from "node:path";
 import { ImageResponse } from "next/og";
 
 import { siteConfig } from "@/lib/data/site";
@@ -6,15 +8,29 @@ export const alt = `${siteConfig.name} — ${siteConfig.tagline}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
+/** O satori não lê do disco: os assets entram como data URI. */
+async function dataUri(relativePath: string) {
+  const file = await readFile(path.join(process.cwd(), relativePath));
+  return `data:image/png;base64,${file.toString("base64")}`;
+}
+
 /**
  * Imagem OG única do site, gerada em build pelo `next/og` (já incluso no
  * Next — sem dependência extra). Rotas que não declaram a própria imagem
  * herdam esta automaticamente.
  *
+ * Usa a versão reverse da marca, pela mesma razão do nav: o violeta original
+ * não tem contraste suficiente sobre o fundo escuro.
+ *
  * TODO(cliente): se quisermos uma arte por produto, basta adicionar um
  * `opengraph-image.tsx` dentro da pasta da rota correspondente.
  */
-export default function OpengraphImage() {
+export default async function OpengraphImage() {
+  const [mark, wordmark] = await Promise.all([
+    dataUri("public/brand/desenvol-mark-reverse.png"),
+    dataUri("public/brand/desenvol-wordmark-reverse.png"),
+  ]);
+
   return new ImageResponse(
     (
       <div
@@ -31,27 +47,15 @@ export default function OpengraphImage() {
           color: "#F5F2FB",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-          <svg width="72" height="90" viewBox="0 0 64 80" fill="none">
-            <path
-              d="M34.5 18.15A19 19 0 1 0 34.5 53.85"
-              stroke="#4B8EC7"
-              strokeWidth="3.4"
-              fill="none"
-            />
-            <path d="M28 4h11.2l7.6 9.4-2.4 42.2H28V4Z" fill="#7A66C4" />
-          </svg>
-          <span style={{ fontSize: 42, letterSpacing: -1 }}>DESENVOL</span>
+        <div style={{ display: "flex", alignItems: "center", gap: 22 }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={mark} alt="" width={40} height={95} />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={wordmark} alt="Desenvol" width={255} height={39} />
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
-          <span
-            style={{
-              fontSize: 22,
-              letterSpacing: 3,
-              color: "#AFA9EC",
-            }}
-          >
+          <span style={{ fontSize: 22, letterSpacing: 3, color: "#AFA9EC" }}>
             DESDE 1994 · LONDRINA, PR
           </span>
           <span

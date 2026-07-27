@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ExternalLink, Mail, MapPin, Phone } from "lucide-react";
 
 import { Logo } from "@/components/brand/logo";
+import type { LogoMode } from "@/components/brand/logo-mark";
 import { SuporteCta } from "@/components/layout/suporte-cta";
 import { PixCard } from "@/components/sections/pix-card";
 import { clientPortals } from "@/lib/data/external-links";
@@ -10,13 +11,13 @@ import { contact, siteConfig } from "@/lib/data/site";
 
 const currentYear = new Date().getFullYear();
 
-export function Footer() {
+export function Footer({ mode }: { mode: LogoMode }) {
   return (
     <footer className="border-t border-hairline bg-bg-subtle">
       <div className="mx-auto max-w-6xl px-6 py-16 md:px-10 md:py-20">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="flex flex-col gap-4">
-            <Logo withSubtitle />
+            <Logo mode={mode} withSubtitle />
             <p className="max-w-56 text-sm text-ink-soft">
               Desde 1994, em Londrina/PR.
             </p>

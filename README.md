@@ -31,6 +31,27 @@ O layout de cada grupo envolve a página em um elemento com `data-mode`, e o
 área de overscroll com a cor certa e alcança conteúdo em portal (sheet,
 dialog), que vive fora da árvore do route group.
 
+## Marca
+
+`public/brand/desenvol-logo.png` é o arquivo original do cliente — um lockup
+vertical sobre fundo branco, com o topo do símbolo cortado na borda da imagem
+e ruído de compressão no fundo. Dele foram recortados, com o fundo removido:
+
+| Asset | Uso |
+| --- | --- |
+| `desenvol-mark.png` | Símbolo, cores da marca — superfícies claras |
+| `desenvol-wordmark.png` | Wordmark violeta — superfícies claras |
+| `desenvol-mark-reverse.png` | Símbolo em reverse — superfícies escuras |
+| `desenvol-wordmark-reverse.png` | Wordmark em reverse — superfícies escuras |
+
+O reverse existe porque o violeta `#47328E` rende 1,95:1 sobre o fundo escuro
+`#0E0A22` e ficaria ilegível. Nele o violeta vira quase-branco e o arco
+azul-céu da marca é preservado. `SiteShell` passa o tema da rota até o
+`<Logo />`, então cada página carrega só a variante que usa.
+
+Para regenerar os recortes é preciso o arquivo original — veja o histórico do
+commit "usa a logo original do cliente" para o script de extração.
+
 ## Onde ficam os textos
 
 Todo o conteúdo institucional está em `lib/data/`, transcrito literalmente do
@@ -54,6 +75,10 @@ permitido; reescrever não.
 
 Marcadas no código como `// TODO(cliente):`:
 
+- **Logo em vetor (SVG/AI/EPS).** O PNG fornecido é raster, tem o topo do
+  símbolo cortado na borda da imagem e artefatos de compressão. Com o vetor,
+  a marca fica nítida em qualquer tamanho e o reverse sai exato
+- Aprovação do uso reverse da marca sobre fundo escuro
 - Link real do Joinchat/WhatsApp (hoje: `wa.me` com o telefone comercial)
 - Imagem oficial do QR code PIX emitida pelo Sicredi
 - Remetente verificado no Resend e `RESEND_API_KEY` de produção

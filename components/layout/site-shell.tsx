@@ -21,11 +21,11 @@ export function SiteShell({ mode, children }: SiteShellProps) {
       >
         Pular para o conteúdo
       </a>
-      <Nav />
+      <Nav mode={mode} />
       <main id="conteudo" className="flex-1">
         {children}
       </main>
-      <Footer />
+      <Footer mode={mode} />
       <WhatsAppFloat />
     </div>
   );
