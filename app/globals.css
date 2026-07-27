@@ -1,0 +1,345 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/*
+  O tema não é escolhido pelo usuário: ele é imposto pela rota. Cada route
+  group — `(dark)` e `(light)` — envolve a página em um elemento com
+  `data-mode`, e o <html> herda os mesmos tokens via `:has()`. Herdar no
+  <html> importa por dois motivos: pinta a área de overscroll com a cor
+  certa e alcança conteúdo em portal (sheet, dialog), que vive fora da
+  árvore do route group.
+*/
+@custom-variant dark (&:where([data-mode="dark"], [data-mode="dark"] *, html:has([data-mode="dark"]) *));
+@custom-variant light (&:where([data-mode="light"], [data-mode="light"] *, html:has([data-mode="light"]) *));
+
+/* ---------------------------------------------------------------------------
+   Tokens fixos da marca (idênticos nos dois temas)
+   Extraídos da logo original em public/brand/desenvol-logo.png
+--------------------------------------------------------------------------- */
+:root {
+  --brand-primary: #47328e;
+  --brand-primary-dark: #423376;
+  --brand-primary-darker: #26215c;
+  --brand-accent: #4b8ec7;
+  --brand-violet-mid: #595b9f;
+  --brand-violet-pale: #eeedfe;
+  --brand-violet-lighter: #f5f2fb;
+  --brand-violet-soft: #afa9ec;
+
+  --radius: 0.75rem;
+}
+
+/* ---------------------------------------------------------------------------
+   Tema claro
+--------------------------------------------------------------------------- */
+[data-mode="light"],
+html:has([data-mode="light"]) {
+  color-scheme: light;
+  --bg: #ffffff;
+  --bg-subtle: #f5f2fb;
+  --surface-card: #ffffff;
+  --hairline: rgba(71, 50, 142, 0.12);
+  --hairline-strong: rgba(71, 50, 142, 0.24);
+
+  --text-primary: #26215c;
+  --text-secondary: #595b9f;
+  --text-muted: rgba(89, 91, 159, 0.7);
+
+  /* Ponte para os tokens semânticos do shadcn */
+  --background: var(--bg);
+  --foreground: var(--text-primary);
+  --card: var(--surface-card);
+  --card-foreground: var(--text-primary);
+  --popover: var(--surface-card);
+  --popover-foreground: var(--text-primary);
+  --primary: var(--brand-primary);
+  --primary-foreground: #ffffff;
+  --secondary: var(--brand-violet-pale);
+  --secondary-foreground: var(--brand-primary-darker);
+  --muted: var(--brand-violet-lighter);
+  --muted-foreground: var(--text-secondary);
+  --accent: var(--brand-violet-pale);
+  --accent-foreground: var(--brand-primary-darker);
+  --destructive: #b3261e;
+  --border: var(--hairline);
+  --input: var(--hairline-strong);
+  --ring: var(--brand-accent);
+}
+
+/* ---------------------------------------------------------------------------
+   Tema escuro
+--------------------------------------------------------------------------- */
+[data-mode="dark"],
+html:has([data-mode="dark"]) {
+  color-scheme: dark;
+  --bg: #0e0a22;
+  --bg-subtle: #15112e;
+  --surface-card: #1a1638;
+  --hairline: rgba(175, 169, 236, 0.15);
+  --hairline-strong: rgba(175, 169, 236, 0.28);
+
+  --text-primary: #f5f2fb;
+  --text-secondary: #afa9ec;
+  --text-muted: rgba(175, 169, 236, 0.6);
+
+  --background: var(--bg);
+  --foreground: var(--text-primary);
+  --card: var(--surface-card);
+  --card-foreground: var(--text-primary);
+  --popover: var(--surface-card);
+  --popover-foreground: var(--text-primary);
+  --primary: var(--brand-primary);
+  --primary-foreground: #ffffff;
+  --secondary: rgba(255, 255, 255, 0.06);
+  --secondary-foreground: var(--text-primary);
+  --muted: rgba(255, 255, 255, 0.04);
+  --muted-foreground: var(--text-secondary);
+  --accent: rgba(255, 255, 255, 0.06);
+  --accent-foreground: var(--text-primary);
+  --destructive: #ff8a80;
+  --border: var(--hairline);
+  --input: var(--hairline-strong);
+  --ring: var(--brand-accent);
+}
+
+/* ---------------------------------------------------------------------------
+   Exposição dos tokens ao Tailwind
+--------------------------------------------------------------------------- */
+@theme inline {
+  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-onest), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+  /* shadcn usa `font-heading` nos títulos dos seus primitivos */
+  --font-heading: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+
+  --color-brand-primary: var(--brand-primary);
+  --color-brand-primary-dark: var(--brand-primary-dark);
+  --color-brand-primary-darker: var(--brand-primary-darker);
+  --color-brand-accent: var(--brand-accent);
+  --color-violet-mid: var(--brand-violet-mid);
+  --color-violet-pale: var(--brand-violet-pale);
+  --color-violet-lighter: var(--brand-violet-lighter);
+  --color-violet-soft: var(--brand-violet-soft);
+
+  --color-bg: var(--bg);
+  --color-bg-subtle: var(--bg-subtle);
+  --color-surface: var(--surface-card);
+  --color-hairline: var(--hairline);
+  --color-hairline-strong: var(--hairline-strong);
+
+  --color-ink: var(--text-primary);
+  --color-ink-soft: var(--text-secondary);
+  --color-ink-faint: var(--text-muted);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 0.875rem;
+  --radius-2xl: 1rem;
+  --radius-3xl: 1.5rem;
+  --radius-4xl: 2rem;
+
+  --ease-brand: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ---------------------------------------------------------------------------
+   Base
+--------------------------------------------------------------------------- */
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text-primary);
+    font-size: 1rem;
+    line-height: 1.55;
+    font-weight: 400;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    text-wrap: balance;
+  }
+
+  /* Foco visível e consistente em toda a UI */
+  :focus-visible {
+    outline: 2px solid var(--brand-accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background-color: var(--brand-primary);
+    color: #ffffff;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Utilitários da identidade
+--------------------------------------------------------------------------- */
+
+/* Eyebrow / label técnico em mono */
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  line-height: 1.2;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+/* Título display muito grande recebe o eixo de largura estreito da Bricolage */
+@utility display-tight {
+  font-family: var(--font-display);
+  letter-spacing: -0.03em;
+  font-variation-settings: "wdth" 90;
+}
+
+/*
+  Gradiente de título — exclusivo do dark, conforme o design system.
+  No light o mesmo componente cai para a cor sólida da marca.
+*/
+@utility text-brand-gradient {
+  background-image: linear-gradient(90deg, #afa9ec, #4b8ec7);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+[data-mode="light"] .text-brand-gradient,
+html:has([data-mode="light"]) .text-brand-gradient {
+  background-image: none;
+  color: var(--brand-primary);
+}
+
+/*
+  Halos radiais — exclusivos do dark. Aplicados como pseudo-elemento
+  para não interferir no fluxo nem no contraste do conteúdo.
+*/
+@utility halo {
+  position: relative;
+  isolation: isolate;
+}
+
+.halo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(75, 142, 199, 0.35) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      circle at bottom left,
+      rgba(71, 50, 142, 0.5) 0%,
+      transparent 60%
+    );
+}
+
+/* Versão contida, para faixas de CTA */
+.halo-soft::before {
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(75, 142, 199, 0.2) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      circle at bottom left,
+      rgba(71, 50, 142, 0.3) 0%,
+      transparent 60%
+    );
+}
+
+[data-mode="light"] .halo::before,
+html:has([data-mode="light"]) .halo::before {
+  display: none;
+}
+
+/* Grade sutil de fundo — exclusiva do light */
+@utility grid-faint {
+  background-image:
+    linear-gradient(to right, var(--brand-violet-pale) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--brand-violet-pale) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+[data-mode="dark"] .grid-faint,
+html:has([data-mode="dark"]) .grid-faint {
+  background-image: none;
+}
+
+/* Animação do accordion do shadcn (Base UI expõe --accordion-panel-height) */
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--accordion-panel-height);
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--accordion-panel-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
