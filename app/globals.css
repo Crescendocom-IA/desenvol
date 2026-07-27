@@ -45,6 +45,8 @@ html:has([data-mode="light"]) {
   --text-primary: #26215c;
   --text-secondary: #595b9f;
   --text-muted: rgba(89, 91, 159, 0.7);
+  /* Cor de links e ícones-chave: o violeta da marca lê bem sobre branco. */
+  --link: var(--brand-primary);
 
   /* Ponte para os tokens semânticos do shadcn */
   --background: var(--bg);
@@ -82,6 +84,12 @@ html:has([data-mode="dark"]) {
   --text-primary: #f5f2fb;
   --text-secondary: #afa9ec;
   --text-muted: rgba(175, 169, 236, 0.6);
+  /*
+    O violeta da marca não atinge AA como texto sobre #0E0A22; no escuro os
+    links usam o violeta claro da paleta (8.8:1). A cor sólida da marca
+    continua sendo usada como *fundo* de botão, onde rende 9.9:1 com branco.
+  */
+  --link: var(--brand-violet-soft);
 
   --background: var(--bg);
   --foreground: var(--text-primary);
@@ -131,6 +139,7 @@ html:has([data-mode="dark"]) {
   --color-ink: var(--text-primary);
   --color-ink-soft: var(--text-secondary);
   --color-ink-faint: var(--text-muted);
+  --color-link: var(--link);
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
