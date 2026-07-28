@@ -33,9 +33,18 @@ export function HeroDark({
   return (
     <section
       aria-labelledby="hero-titulo"
-      className="halo relative overflow-hidden border-b border-hairline"
+      className="halo relative flex min-h-[560px] items-center overflow-hidden border-b border-hairline"
     >
-      <Container className="py-20 md:py-28 lg:py-32">
+      {/*
+        `min-h` é piso, não altura fixa: heroes de título longo (a home) passam
+        de 560px naturalmente e não são cortados. Ele existe para os títulos
+        curtos — "A empresa", em /sobre, ocupa uma linha só.
+
+        `items-center` é o que torna o piso utilizável: sem ele, quando o
+        `min-h` passa a valer, o conteúdo encosta no topo e sobra um vazio
+        embaixo — o mesmo problema de espaçamento que este ajuste elimina.
+      */}
+      <Container className="py-20 md:py-24">
         <div className="flex max-w-3xl flex-col gap-6">
           <p className="eyebrow rise-in" style={delay(0)}>
             {eyebrow}
