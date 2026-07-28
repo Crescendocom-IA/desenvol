@@ -335,6 +335,9 @@ Do mais recente para o mais antigo. Os oito primeiros (`90d28dc` a `9ce7280`)
 são a construção do site; os demais são as duas levas de ajuste e documentação.
 
 ```
+541a0b6 perf: remove eixo opsz nao referenciado da Bricolage (-51,9 KB)
+2ec0cb0 chore: v1 pronta para preview
+1b628a8 docs: historico de commits no handoff tecnico
 68b0497 docs: README + .env.example
 d3b0273 docs: handoff tecnico para proximo dev
 589b63a docs: handoff para cliente com pendencias consumiveis
