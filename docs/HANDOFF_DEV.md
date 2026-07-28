@@ -166,15 +166,17 @@ página carrega só a variante que usa. Se trocar os assets, gere os dois.
 > Next. Se precisar regerar os recortes, a fonte é esse arquivo.
 
 > Histórico, para rastreabilidade: a primeira versão usava um SVG redesenhado
-> à mão, e essa abordagem chegou a ser aprovada em revisão interna. A troca
-> pelo arquivo raster do cliente foi **instrução da direção do projeto**, não
-> uma decisão de engenharia nossa nem um pedido da Desenvol — a Desenvol não
-> teve acesso ao trabalho até aqui e não emitiu pedido nenhum.
+> à mão, e essa abordagem chegou a ser aprovada em revisão interna. A Desenvol
+> não teve acesso ao trabalho até aqui e não emitiu pedido nenhum.
 >
-> O racional da instrução foi fidelidade de marca: o SVG era uma releitura das
-> formas, e a direção preferiu o desenho real. O que decorreu disso, aí sim
-> como decisão técnica, foi *como* viabilizar o raster — recorte, remoção de
-> fundo por un-multiply e a variante reverse.
+> A troca pelo arquivo raster do cliente foi instrução direta da direção do
+> projeto, sem racional declarado. A palavra "correta" na instrução pode
+> sugerir fidelidade de marca, mas isso é inferência — não há motivação
+> registrada. Antes de reverter para o SVG redesenhado, consulte a direção.
+>
+> O que decorreu da instrução, aí sim como decisão técnica, foi *como*
+> viabilizar o raster — recorte, remoção de fundo por un-multiply e a variante
+> reverse.
 >
 > Se encontrar referência a um "SVG de linha do header" em documento anterior,
 > está desatualizada.
