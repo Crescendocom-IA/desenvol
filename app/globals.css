@@ -143,6 +143,16 @@ html:has([data-mode="dark"]) {
 
   --color-ink: var(--text-primary);
   --color-ink-soft: var(--text-secondary);
+  /*
+    ATENÇÃO — `text-ink-faint` NÃO passa AA em texto de corpo.
+    Medido sobre o fundo de cada tema: 3,8:1 no escuro e 3,2:1 no claro.
+    O mínimo AA é 4,5:1 para texto normal e 3:1 para texto grande
+    (>=24px, ou >=18,66px em peso 500+).
+
+    Use apenas em tipo grande ou elemento decorativo. Para texto pequeno
+    secundário existe `text-ink-soft`, que rende 8,8:1 no escuro e 7,0:1 no
+    claro. Na dúvida, `text-ink-soft`.
+  */
   --color-ink-faint: var(--text-muted);
   --color-link: var(--link);
 

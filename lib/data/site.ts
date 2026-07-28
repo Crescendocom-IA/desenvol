@@ -4,15 +4,33 @@
  */
 
 /**
- * Base de canonical, sitemap e og:url.
+ * Base de canonical, og:url, sitemap e robots.
  *
- * TODO(cliente): confirmar o domínio final de produção. Enquanto isso não
- * acontece, `NEXT_PUBLIC_SITE_URL` permite corrigir o domínio direto no painel
- * da Vercel, sem mexer no código.
+ * Lida apenas em contexto de servidor (lib/seo, app/sitemap, app/robots,
+ * app/layout) — nenhum componente de cliente lê `siteConfig.url`.
+ *
+ * TODO(cliente): confirmar o domínio final de produção. Até lá,
+ * `NEXT_PUBLIC_SITE_URL` corrige o domínio pelo painel da Vercel, sem deploy.
  */
-const siteUrl = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.desenvol.com.br"
-).replace(/\/$/, "");
+function resolveSiteUrl() {
+  const explicit = process.env.NEXT_PUBLIC_SITE_URL;
+  if (explicit) return explicit.replace(/\/$/, "");
+
+  // Em preview, apontar para o domínio de produção quebra o compartilhamento:
+  // www.desenvol.com.br ainda serve o site antigo, que não tem /opengraph-image.
+  // Usar a URL do próprio deploy faz o preview referenciar a si mesmo.
+  if (
+    process.env.VERCEL_ENV &&
+    process.env.VERCEL_ENV !== "production" &&
+    process.env.VERCEL_URL
+  ) {
+    return `https://${process.env.VERCEL_URL}`;
+  }
+
+  return "https://www.desenvol.com.br";
+}
+
+const siteUrl = resolveSiteUrl();
 
 export const siteConfig = {
   name: "Desenvol Informática",
