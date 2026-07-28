@@ -65,9 +65,18 @@ node scripts/measure.mjs http://localhost:3000/ --json > antes.json
 `•` quando ela cabe inteira na primeira tela e `▸` quando é cortada pela dobra,
 com quantos pixels dela aparecem.
 
-A última linha conta elementos com `opacity` computada zero. **Abaixo da dobra
-isso é esperado** — o site usa revelação em scroll. **Acima da dobra é alerta**:
-significa conteúdo que só existe se o JavaScript rodar.
+A primeira linha da saída informa se a **emulação de dispositivo** está ligada.
+Ela sai sempre e em primeiro lugar de propósito — ver a seção adiante.
+
+A última parte lista elementos com `opacity` computada zero. **Abaixo da dobra
+isso é esperado**: o site usa revelação em scroll. **Acima da dobra, leia o que
+foi listado antes de concluir qualquer coisa.** Nem todo elemento invisível é
+bug: o tooltip "Podemos ajudar?" do botão de WhatsApp é `opacity: 0` por
+projeto e só aparece no hover, e ele aparece nessa lista em toda execução.
+
+O que seria bug é um **bloco de conteúdo** ali — esse dependeria de JavaScript
+para existir. Por isso o script imprime o seletor e o texto de cada um: contar
+sem identificar já nos levou a diagnosticar um bug que não existia.
 
 ### Emulação de dispositivo muda o resultado
 

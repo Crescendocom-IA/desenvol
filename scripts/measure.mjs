@@ -243,6 +243,17 @@ const pageScript = (extraSelectors) => `(() => {
     (el) => getComputedStyle(el).opacity === '0',
   );
 
+  // Identifica o elemento oculto o suficiente para agir sobre ele: um
+  // contador sozinho diz que existe problema, não onde.
+  const identificar = (el) => {
+    const partes = [el.tagName.toLowerCase()];
+    if (el.id) partes.push('#' + el.id);
+    const cls = (el.getAttribute('class') || '').split(/\\s+/).filter(Boolean).slice(0, 2);
+    if (cls.length) partes.push('.' + cls.join('.'));
+    const texto = (el.textContent || '').trim().replace(/\\s+/g, ' ').slice(0, 40);
+    return { seletor: partes.join(''), texto, ...box(el) };
+  };
+
   return JSON.stringify({
     url: location.href,
     viewport: { largura: innerWidth, altura: innerHeight },
@@ -254,6 +265,9 @@ const pageScript = (extraSelectors) => `(() => {
     ocultosPorOpacidade: {
       total: ocultos.length,
       acimaDaDobra: ocultos.filter((el) => el.getBoundingClientRect().top < innerHeight).length,
+      detalheAcimaDaDobra: ocultos
+        .filter((el) => el.getBoundingClientRect().top < innerHeight)
+        .map(identificar),
     },
   });
 })()`;
@@ -265,8 +279,16 @@ const pageScript = (extraSelectors) => `(() => {
 function report(data) {
   const { viewport, dobra, cabecalho, secoes, alvos, ocultosPorOpacidade } = data;
 
-  console.log(`\n${data.url}`);
-  console.log(`viewport ${viewport.largura}x${viewport.altura}${mobile ? " (emulação mobile)" : ""}`);
+  // O modo de emulação sai sempre, e em primeiro lugar: ele muda a quebra de
+  // linha e a altura do texto, e comparar duas medições em modos diferentes
+  // leva a conclusões opostas. Impresso aqui para ninguém depender de lembrar
+  // quais args passou.
+  console.log(
+    `\nemulação de dispositivo: ${mobile ? "LIGADA" : "DESLIGADA"}` +
+      `  ·  espera real: ${waitMs}ms`,
+  );
+  console.log(data.url);
+  console.log(`viewport ${viewport.largura}x${viewport.altura}`);
   console.log(`altura total da página: ${data.paginaAltura}px\n`);
 
   if (cabecalho) console.log(`cabeçalho: ${cabecalho.height}px\n`);
@@ -314,8 +336,18 @@ function report(data) {
       `(${ocultosPorOpacidade.acimaDaDobra} acima da dobra)`,
   );
   if (ocultosPorOpacidade.acimaDaDobra > 0) {
+    // Sem listar quem é, este aviso vira falso alarme: tooltip de hover é
+    // `opacity: 0` por projeto. Cabe a quem lê separar intenção de bug.
+    console.log("  acima da dobra — confira se cada um é intencional:");
+    for (const el of ocultosPorOpacidade.detalheAcimaDaDobra) {
+      console.log(
+        `    ${el.seletor}  top=${el.top} bottom=${el.bottom} ` +
+          `(${el.visivelNaDobra}px na dobra)` +
+          (el.texto ? `  "${el.texto}"` : ""),
+      );
+    }
     console.log(
-      "  atenção: conteúdo acima da dobra invisível sem JavaScript.",
+      "  tooltip de hover é esperado; bloco de conteúdo não — esse dependeria de JS.",
     );
   }
   console.log();
