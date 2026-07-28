@@ -344,6 +344,8 @@ Do mais recente para o mais antigo. Os oito primeiros (`90d28dc` a `9ce7280`)
 são a construção do site; os demais são as duas levas de ajuste e documentação.
 
 ```
+c5665bd chore: tira a arte oficial da marca da superficie publica
+fc3cff9 docs: atualiza historico de commits no handoff tecnico
 541a0b6 perf: remove eixo opsz nao referenciado da Bricolage (-51,9 KB)
 2ec0cb0 chore: v1 pronta para preview
 1b628a8 docs: historico de commits no handoff tecnico
