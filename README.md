@@ -65,7 +65,8 @@ e por que o `packageManager` não deve ser alterado — está em
 - `lib/data/` — **todo o conteúdo institucional**, transcrito literalmente do
   site atual. É aqui que se edita texto, não nos componentes.
 - `lib/` — `seo.ts` (metadata por página), `cta.ts`, `motion.ts`, `utils.ts`.
-- `public/brand/` — logo original do cliente e os recortes derivados dela.
+- `public/brand/` — os quatro recortes da marca servidos ao navegador. A arte
+  oficial do cliente fica em `docs/brand/` e **não** é publicada.
 
 ## Documentação
 

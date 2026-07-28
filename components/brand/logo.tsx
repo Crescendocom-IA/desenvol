@@ -21,8 +21,9 @@ const WORDMARK_WIDTH = 118;
 
 /**
  * Lockup horizontal: símbolo + wordmark, ambos recortados do arquivo original
- * do cliente. O lockup dele é vertical e não caberia numa barra de 72px, por
- * isso as duas peças são posicionadas lado a lado aqui.
+ * do cliente (docs/brand/desenvol-logo.png). O lockup dele é vertical e não
+ * caberia numa barra de 72px, por isso as duas peças são posicionadas lado a
+ * lado aqui.
  */
 export function Logo({
   mode = "light",

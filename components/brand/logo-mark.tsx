@@ -19,7 +19,7 @@ const MARK_WIDTH = 19;
 
 /**
  * Símbolo da Desenvol, extraído do arquivo original do cliente
- * (public/brand/desenvol-logo.png) com o fundo branco removido.
+ * (docs/brand/desenvol-logo.png) com o fundo branco removido.
  *
  * Em superfícies escuras usamos a versão reverse: o violeta da marca rende
  * apenas 1,95:1 sobre #0E0A22 e ficaria praticamente invisível. O arco

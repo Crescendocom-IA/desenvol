@@ -117,8 +117,10 @@ desenvol-site/
 │  ├─ motion.ts                     # ← curva de easing e passo do stagger
 │  ├─ seo.ts                        # buildMetadata()
 │  └─ utils.ts                      # cn()
-├─ public/brand/                    # logo original + 4 recortes
-├─ docs/                            # este arquivo e o do cliente
+├─ public/brand/                    # só os 4 recortes servidos ao navegador
+├─ docs/
+│  ├─ brand/desenvol-logo.png       # ← arte oficial da marca, NÃO publicada
+│  └─ HANDOFF_*.md                  # este arquivo e o do cliente
 └─ .reports/LIGHTHOUSE.md           # baseline de performance
 ```
 
@@ -147,7 +149,7 @@ revisadas e aprovadas.
 ### 1. A logo usa os recortes do arquivo do cliente, com uma variante reverse
 
 **O que fizemos:** recortamos símbolo e wordmark de
-`public/brand/desenvol-logo.png` removendo o fundo branco, e geramos uma
+`docs/brand/desenvol-logo.png` removendo o fundo branco, e geramos uma
 segunda versão em que o violeta vira quase-branco.
 **Por quê:** o arquivo do cliente é um lockup vertical sobre fundo branco
 opaco — inutilizável numa barra de 72px. E o violeta `#47328E` rende **1,95:1**
@@ -155,6 +157,13 @@ sobre o fundo escuro `#0E0A22`, ou seja, praticamente invisível nas 4 rotas
 escuras. O arco azul-céu é preservado nas duas versões.
 **O que muda para você:** `SiteShell` passa o tema até o `<Logo />`, então cada
 página carrega só a variante que usa. Se trocar os assets, gere os dois.
+
+> **A arte oficial da marca fica em `docs/brand/desenvol-logo.png` e não é
+> publicada.** Só os quatro recortes derivados vivem em `public/brand/`, porque
+> são os únicos que o navegador precisa buscar. O original tem 3,6 MB e nenhuma
+> página o referencia — deixá-lo em `public/` o exporia numa URL pública que
+> qualquer varredura descobre, sem nenhum ganho. `docs/` não é servido pelo
+> Next. Se precisar regerar os recortes, a fonte é esse arquivo.
 
 > Histórico, para rastreabilidade: a primeira versão usava um SVG redesenhado
 > à mão, e essa abordagem chegou a ser aprovada em revisão interna. A troca
@@ -177,8 +186,8 @@ favorecido. Não há QR.
 **Por quê:** gerar um BR Code a partir de dados inferidos pode produzir um
 payload inválido — dano real com dinheiro de terceiros.
 **O que muda para você:** quando o cliente enviar o QR oficial do Sicredi, é
-só colocar em `public/brand/` e renderizar com `next/image` em
-`components/sections/pix-card.tsx`.
+só colocar em `public/brand/` (é asset servido, diferente da arte oficial) e
+renderizar com `next/image` em `components/sections/pix-card.tsx`.
 
 ### 3. `typedRoutes` está no topo do `next.config.ts`, não em `experimental`
 
