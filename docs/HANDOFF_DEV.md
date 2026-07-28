@@ -156,10 +156,19 @@ escuras. O arco azul-céu é preservado nas duas versões.
 **O que muda para você:** `SiteShell` passa o tema até o `<Logo />`, então cada
 página carrega só a variante que usa. Se trocar os assets, gere os dois.
 
-> Histórico: a primeira versão usava um SVG redesenhado à mão, aprovado em
-> revisão. O cliente depois pediu explicitamente a logo original, e a
-> implementação mudou. Se você encontrar referência ao "SVG do header" em
-> documento antigo, é isso — está desatualizado.
+> Histórico, para rastreabilidade: a primeira versão usava um SVG redesenhado
+> à mão, e essa abordagem chegou a ser aprovada em revisão interna. A troca
+> pelo arquivo raster do cliente foi **instrução da direção do projeto**, não
+> uma decisão de engenharia nossa nem um pedido da Desenvol — a Desenvol não
+> teve acesso ao trabalho até aqui e não emitiu pedido nenhum.
+>
+> O racional da instrução foi fidelidade de marca: o SVG era uma releitura das
+> formas, e a direção preferiu o desenho real. O que decorreu disso, aí sim
+> como decisão técnica, foi *como* viabilizar o raster — recorte, remoção de
+> fundo por un-multiply e a variante reverse.
+>
+> Se encontrar referência a um "SVG de linha do header" em documento anterior,
+> está desatualizada.
 
 ### 2. O QR code do PIX não foi gerado
 
@@ -302,11 +311,21 @@ entre manter trancada ou abrir está pendente com o cliente — ver
 indexação (o Googlebot executa JS), mas se o JS falhar, o conteúdo abaixo do
 hero não aparece. Ver `.reports/LIGHTHOUSE.md` para a mitigação sugerida.
 
-**Performance mobile está em 86/85, abaixo de 90.** Causa raiz identificada e
-medida: a Bricolage Grotesque variável tem 128,5 KB e gatilha um novo candidato
-a LCP quando termina de baixar. A correção provável (remover o eixo `opsz`, que
-o código não usa) está documentada e **não foi aplicada** — configuração de
-fontes estava congelada. Ver `.reports/LIGHTHOUSE.md`.
+**Performance mobile está em 87/85, abaixo de 90 — e não há defeito de
+renderização por trás disso.** Sem throttling a home marca Performance 100 com
+LCP de 0,2 s, o Speed Index é 0,9 s mesmo sob throttling, e todo o carregamento
+termina em 244 ms no traço observado. O que a nota mede é peso de transferência
+sob o modelo de 4G lento: ~452 KB, dos quais 220 KB de JavaScript e 148 KB de
+fontes.
+
+Antes de otimizar mais, **re-meça contra o preview da Vercel** — a medição
+atual é contra `localhost`, sem CDN, e o termo de transferência muda bastante
+no edge. Diagnóstico completo, com as alavancas restantes ordenadas por
+tamanho, em `.reports/LIGHTHOUSE.md`.
+
+**Não reintroduza o eixo `opsz` na Bricolage.** Ele foi removido por não ser
+referenciado por nenhum seletor, economizando 51,9 KB sem mudar um pixel. O
+`wdth`, esse sim, é usado pelo `display-tight`.
 
 ---
 
