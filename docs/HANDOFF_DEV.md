@@ -121,6 +121,8 @@ desenvol-site/
 ├─ docs/
 │  ├─ brand/desenvol-logo.png       # ← arte oficial da marca, NÃO publicada
 │  └─ HANDOFF_*.md                  # este arquivo e o do cliente
+├─ scripts/
+│  └─ measure.mjs                   # ← mede layout em Chrome real; ver scripts/README.md
 └─ .reports/LIGHTHOUSE.md           # baseline de performance
 ```
 
@@ -315,6 +317,16 @@ reativada para busca, são dois lugares: remover o `robots` de
 `app/sitemap.ts`. Mudar só um gera sinal contraditório para o Google. A decisão
 entre manter trancada ou abrir está pendente com o cliente — ver
 `docs/HANDOFF_CLIENTE.md`, item 7.
+
+**Ferramentas de screenshot com `--virtual-time-budget` não são confiáveis
+aqui.** O tempo virtual congela o `requestAnimationFrame`, e tudo que aparece
+via `motion` — as revelações em scroll deste site — fica capturado no estado
+inicial, `opacity: 0`. A barra de estatísticas da home já foi fotografada como
+uma faixa vazia por causa disso, com 15 segundos de orçamento virtual, e quase
+virou investigação de um bug inexistente. Para medir layout ou conferir
+renderização use `scripts/measure.mjs`, que usa espera de relógio num Chrome
+real — é o método verificado. Vale para qualquer ferramenta que ofereça essa
+flag, não só para o Chrome direto.
 
 **Conteúdo abaixo da dobra depende de JavaScript.** O componente `Reveal`
 (`components/motion/reveal.tsx`) usa `whileInView` do `motion`, que serializa
