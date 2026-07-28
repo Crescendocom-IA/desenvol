@@ -1,11 +1,7 @@
-"use client";
-
-import { motion, useReducedMotion } from "motion/react";
-
 import { Container } from "@/components/layout/container";
 import { HeroTitle } from "@/components/sections/hero-title";
 import { CtaLink, type CtaSpec } from "@/components/ui/cta-link";
-import { EASE_BRAND, STAGGER_STEP } from "@/lib/motion";
+import { STAGGER_STEP } from "@/lib/motion";
 
 export type HeroLightProps = {
   eyebrow: string;
@@ -16,9 +12,16 @@ export type HeroLightProps = {
   secondaryCta?: CtaSpec;
 };
 
+/** Atraso escalonado da entrada, na ordem de leitura. */
+const delay = (index: number) => ({
+  animationDelay: `${index * STAGGER_STEP}s`,
+});
+
 /**
- * Hero das páginas de conteúdo: mesma estrutura do HeroDark, tipografia
- * mais compacta e grade sutil no lugar dos halos.
+ * Hero das páginas de conteúdo: mesma estrutura do HeroDark, tipografia mais
+ * compacta e grade sutil no lugar dos halos.
+ *
+ * Server Component pelo mesmo motivo do HeroDark — ver a nota em globals.css.
  */
 export function HeroLight({
   eyebrow,
@@ -28,21 +31,6 @@ export function HeroLight({
   primaryCta,
   secondaryCta,
 }: HeroLightProps) {
-  const reduceMotion = useReducedMotion();
-
-  const step = (index: number) =>
-    reduceMotion
-      ? {}
-      : {
-          initial: { opacity: 0, y: 12 },
-          animate: { opacity: 1, y: 0 },
-          transition: {
-            duration: 0.6,
-            ease: EASE_BRAND,
-            delay: index * STAGGER_STEP,
-          },
-        };
-
   return (
     <section
       aria-labelledby="hero-titulo"
@@ -50,35 +38,35 @@ export function HeroLight({
     >
       <Container className="py-16 md:py-20 lg:py-24">
         <div className="flex max-w-3xl flex-col gap-5">
-          <motion.p {...step(0)} className="eyebrow">
+          <p className="eyebrow rise-in" style={delay(0)}>
             {eyebrow}
-          </motion.p>
+          </p>
 
-          <motion.div {...step(1)}>
+          <div className="rise-in" style={delay(1)}>
             <HeroTitle
               id="hero-titulo"
               title={title}
               accentPart={titleAccentPart}
               className="text-3xl sm:text-4xl lg:text-[3.25rem] lg:leading-[1.06]"
             />
-          </motion.div>
+          </div>
 
-          <motion.p
-            {...step(2)}
-            className="max-w-2xl text-ink-soft text-pretty md:text-lg"
+          <p
+            className="rise-in max-w-2xl text-ink-soft text-pretty md:text-lg"
+            style={delay(2)}
           >
             {subtitle}
-          </motion.p>
+          </p>
 
           {primaryCta || secondaryCta ? (
-            <motion.div {...step(3)} className="mt-2 flex flex-wrap gap-3">
+            <div className="rise-in mt-2 flex flex-wrap gap-3" style={delay(3)}>
               {primaryCta ? (
                 <CtaLink {...primaryCta} variant="primary" size="md" />
               ) : null}
               {secondaryCta ? (
                 <CtaLink {...secondaryCta} variant="outline" size="md" />
               ) : null}
-            </motion.div>
+            </div>
           ) : null}
         </div>
       </Container>
