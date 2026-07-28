@@ -312,4 +312,31 @@ fontes estava congelada. Ver `.reports/LIGHTHOUSE.md`.
 
 ## Histórico de commits desta entrega
 
-<!-- preenchido na verificação final -->
+Do mais recente para o mais antigo. Os oito primeiros (`90d28dc` a `9ce7280`)
+são a construção do site; os demais são as duas levas de ajuste e documentação.
+
+```
+68b0497 docs: README + .env.example
+d3b0273 docs: handoff tecnico para proximo dev
+589b63a docs: handoff para cliente com pendencias consumiveis
+ac153bc chore: relatorio Lighthouse baseline (home + sgpar, mobile + desktop)
+71e3e83 fix: hero deixa de depender de JS para ficar visivel
+5561056 fix: og:url correto em preview e registro do limite do text-ink-faint
+8c60c41 chore: prepara o deploy na vercel
+a846f71 feat(marca): usa a logo original do cliente no lugar do SVG redesenhado
+9ce7280 chore: validation pass
+37a2456 feat: SEO, sitemap, robots, 404 e otimizacoes finais
+48a6d7a feat: pagina de contato com formulario
+f7af8ca feat: paginas ERP, NF-e, App Vendas e Missas DataShow
+87ea981 feat: paginas SGPAR e Tribunal Eclesiastico
+e72446e feat: paginas dark - sobre e landings de categoria
+093e7f8 feat(home): hero, stats, dual tracks, produtos e institucional
+b20b74d feat: layout base - nav, footer, route groups e temas
+90d28dc chore: scaffold next.js 15 + tailwind v4 + design tokens
+```
+
+Quatro commits valem leitura da mensagem completa (`git show --quiet <hash>`),
+porque explicam decisões que não são óbvias no diff: `a846f71` (por que existe
+uma variante reverse da logo), `8c60c41` (por que o pnpm está fixado),
+`5561056` (por que o og:url muda em preview) e `71e3e83` (por que o hero saiu
+do `motion`).
