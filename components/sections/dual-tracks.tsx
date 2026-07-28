@@ -10,7 +10,7 @@ const tracks = [
     href: "/sistemas-eclesiais",
     icon: Church,
     title: "Para paróquias e dioceses",
-    text: "Sacramentos, dízimo, catequese, balancetes e processos canônicos — cada rotina da secretaria em um sistema só, também em versão online.",
+    text: "Sacramentos, dízimo, catequese, balancetes e processos canônicos. Cada rotina da secretaria em um sistema só, também em versão online.",
   },
   {
     href: "/sistemas-comerciais",

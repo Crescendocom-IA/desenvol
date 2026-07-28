@@ -29,7 +29,7 @@ function formatBody(values: Record<string, string>) {
 
 function buildMailto(values: Record<string, string>) {
   const params = new URLSearchParams({
-    subject: `[Site] ${values.assunto} — ${values.nome}`,
+    subject: `[Site] ${values.assunto}, ${values.nome}`,
     body: formatBody(values),
   });
 
@@ -73,7 +73,7 @@ export async function sendContactMessage(
     fieldErrors.assunto = "Escolha um assunto.";
   }
   if (values.mensagem.length < 10) {
-    fieldErrors.mensagem = "Conte um pouco mais — ao menos 10 caracteres.";
+    fieldErrors.mensagem = "Conte um pouco mais, ao menos 10 caracteres.";
   }
 
   if (Object.keys(fieldErrors).length > 0) {
@@ -100,12 +100,12 @@ export async function sendContactMessage(
     const resend = new Resend(apiKey);
 
     // TODO(cliente): confirmar o remetente verificado no Resend antes de
-    // publicar — precisa ser um domínio validado, não o e-mail de destino.
+    // publicar, precisa ser um domínio validado, não o e-mail de destino.
     const { error } = await resend.emails.send({
       from: process.env.RESEND_FROM ?? "Site Desenvol <onboarding@resend.dev>",
       to: [contact.email],
       replyTo: values.email,
-      subject: `[Site] ${values.assunto} — ${values.nome}`,
+      subject: `[Site] ${values.assunto}, ${values.nome}`,
       text: formatBody(values),
     });
 

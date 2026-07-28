@@ -25,7 +25,7 @@ export default function HomePage() {
         eyebrow="Desde 1994 · Londrina, PR"
         title="Sistemas de gestão que servem paróquias e empresas há três décadas."
         titleAccentPart="paróquias e empresas"
-        subtitle="Da secretaria paroquial ao balcão da loja, desenvolvemos software de gestão para dois mundos exigentes — com o mesmo compromisso de proximidade e suporte."
+        subtitle="Da secretaria paroquial ao balcão da loja, desenvolvemos software de gestão para dois mundos exigentes, com o mesmo compromisso de proximidade e suporte."
         primaryCta={{ label: "Conhecer produtos", href: "#produtos" }}
         secondaryCta={{ label: "Falar com um especialista", href: "/contato" }}
       />
@@ -51,7 +51,7 @@ export default function HomePage() {
 
       <CtaBand
         heading="Vamos conversar sobre o que sua organização precisa"
-        subheading="Conte o seu cenário e indicamos o caminho — sem compromisso."
+        subheading="Conte o seu cenário e indicamos o caminho, sem compromisso."
         ctaLabel="Fale com a Desenvol"
         ctaHref="/contato"
       />

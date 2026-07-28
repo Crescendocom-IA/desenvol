@@ -62,7 +62,7 @@ export default function SistemasComerciaisPage() {
 
         <FeatureBlock
           eyebrow="Gestão integrada"
-          title="ERP Desenvol — completo, flexível e imediato"
+          title="ERP Desenvol, completo, flexível e imediato"
           description="Solução que se adapta a diferentes tipos de empresa e atende de forma integrada setores como vendas, estoque e financeiro, além de realizar a emissão de notas e cupons fiscais e oferecer uma ampla gama de relatórios detalhados."
           highlights={[
             "Vendas, estoque e financeiro em um fluxo único",
@@ -76,7 +76,7 @@ export default function SistemasComerciaisPage() {
 
         <FeatureBlock
           eyebrow="Documentos fiscais"
-          title="NF-e — o DCOM vai além de um validador"
+          title="NF-e, o DCOM vai além de um validador"
           description="Sistema dedicado à emissão, envio e gerenciamento de Notas Fiscais Eletrônicas, adequado às exigências fiscais e a empresas de diversos segmentos."
           highlights={[
             "Emissão a partir do cadastro de produtos e clientes",
@@ -91,7 +91,7 @@ export default function SistemasComerciaisPage() {
 
         <FeatureBlock
           eyebrow="Equipe em campo"
-          title="App Vendas — acesso restrito a clientes"
+          title="App Vendas, acesso restrito a clientes"
           description="Aplicativo de vendas disponibilizado aos clientes da Desenvol. O acesso é liberado mediante contato com a nossa equipe."
           icon={ShoppingCart}
           ctaLabel="Solicitar acesso"

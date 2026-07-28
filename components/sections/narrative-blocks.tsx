@@ -8,7 +8,7 @@ export type NarrativeBlock = {
 };
 
 /**
- * Texto corrido do cliente apresentado em três tempos — contexto, solução e
+ * Texto corrido do cliente apresentado em três tempos, contexto, solução e
  * flexibilidade. Cada parágrafo é preservado inteiro; o que muda é o peso
  * tipográfico de cada um.
  */

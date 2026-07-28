@@ -12,7 +12,7 @@ type SuporteCtaProps = {
 /**
  * Download do atendimento remoto (suporte.exe).
  *
- * Sai do site — o Content-Disposition do servidor original é quem transforma
+ * Sai do site, o Content-Disposition do servidor original é quem transforma
  * a navegação em download, por isso não usamos `download` aqui.
  */
 export function SuporteCta({

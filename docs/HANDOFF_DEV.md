@@ -1,4 +1,4 @@
-# Handoff técnico — site institucional Desenvol
+# Handoff técnico, site institucional Desenvol
 
 Para quem for assumir a manutenção. A ideia é que uma leitura baste.
 
@@ -12,7 +12,7 @@ rotas são estáticas; a única parte dinâmica é a server action do formulári
 contato.
 
 A marca é violeta indigo (`#47328E`) com acento azul-céu (`#4B8EC7`), extraída
-da logo real do cliente — o azul do site antigo era um erro. Existem dois temas
+da logo real do cliente, o azul do site antigo era um erro. Existem dois temas
 e **não há toggle**: o tema é imposto pela rota, via route groups `(dark)` e
 `(light)`. Páginas institucionais curtas são escuras; páginas com listas longas
 e formulários são claras, porque leitura extensa no escuro cansa.
@@ -32,7 +32,7 @@ pnpm start            # servir o build
 pnpm lint             # verificação
 ```
 
-Node 20+. O `packageManager` do `package.json` fixa o pnpm 11.17.0 — ver
+Node 20+. O `packageManager` do `package.json` fixa o pnpm 11.17.0, ver
 "Fluxo de deploy" para o porquê.
 
 ### Variáveis de ambiente
@@ -129,7 +129,7 @@ desenvol-site/
 Diferenças em relação ao briefing, e o porquê:
 
 - **Não existe `public/og/`.** A imagem OG é gerada em build por
-  `app/opengraph-image.tsx` usando `next/og`, que já vem no Next — evitou uma
+  `app/opengraph-image.tsx` usando `next/og`, que já vem no Next, evitou uma
   dependência e um asset estático para manter em sincronia.
 - **`components/ui/select.tsx` foi removido.** O formulário usa `<select>`
   nativo (decisão 4). Deixar o primitivo sem uso seria código morto.
@@ -154,7 +154,7 @@ revisadas e aprovadas.
 `docs/brand/desenvol-logo.png` removendo o fundo branco, e geramos uma
 segunda versão em que o violeta vira quase-branco.
 **Por quê:** o arquivo do cliente é um lockup vertical sobre fundo branco
-opaco — inutilizável numa barra de 72px. E o violeta `#47328E` rende **1,95:1**
+opaco, inutilizável numa barra de 72px. E o violeta `#47328E` rende **1,95:1**
 sobre o fundo escuro `#0E0A22`, ou seja, praticamente invisível nas 4 rotas
 escuras. O arco azul-céu é preservado nas duas versões.
 **O que muda para você:** `SiteShell` passa o tema até o `<Logo />`, então cada
@@ -163,7 +163,7 @@ página carrega só a variante que usa. Se trocar os assets, gere os dois.
 > **A arte oficial da marca fica em `docs/brand/desenvol-logo.png` e não é
 > publicada.** Só os quatro recortes derivados vivem em `public/brand/`, porque
 > são os únicos que o navegador precisa buscar. O original tem 3,6 MB e nenhuma
-> página o referencia — deixá-lo em `public/` o exporia numa URL pública que
+> página o referencia, deixá-lo em `public/` o exporia numa URL pública que
 > qualquer varredura descobre, sem nenhum ganho. `docs/` não é servido pelo
 > Next. Se precisar regerar os recortes, a fonte é esse arquivo.
 
@@ -173,11 +173,11 @@ página carrega só a variante que usa. Se trocar os assets, gere os dois.
 >
 > A troca pelo arquivo raster do cliente foi instrução direta da direção do
 > projeto, sem racional declarado. A palavra "correta" na instrução pode
-> sugerir fidelidade de marca, mas isso é inferência — não há motivação
+> sugerir fidelidade de marca, mas isso é inferência, não há motivação
 > registrada. Antes de reverter para o SVG redesenhado, consulte a direção.
 >
 > O que decorreu da instrução, aí sim como decisão técnica, foi *como*
-> viabilizar o raster — recorte, remoção de fundo por un-multiply e a variante
+> viabilizar o raster, recorte, remoção de fundo por un-multiply e a variante
 > reverse.
 >
 > Se encontrar referência a um "SVG de linha do header" em documento anterior,
@@ -188,7 +188,7 @@ página carrega só a variante que usa. Se trocar os assets, gere os dois.
 **O que fizemos:** o card de PIX mostra a chave (CNPJ) copiável, o banco e o
 favorecido. Não há QR.
 **Por quê:** gerar um BR Code a partir de dados inferidos pode produzir um
-payload inválido — dano real com dinheiro de terceiros.
+payload inválido, dano real com dinheiro de terceiros.
 **O que muda para você:** quando o cliente enviar o QR oficial do Sicredi, é
 só colocar em `public/brand/` (é asset servido, diferente da arte oficial) e
 renderizar com `next/image` em `components/sections/pix-card.tsx`.
@@ -215,7 +215,7 @@ o seletor do próprio sistema operacional no mobile.
 **O que fizemos:** links e ícones-chave usam `--link`, que é o violeta da marca
 no tema claro e o violeta claro `#AFA9EC` no escuro.
 **Por quê:** contraste. `#47328E` como **texto** sobre `#0E0A22` não passa AA.
-Como **fundo de botão** com texto branco, o mesmo violeta rende 9,9:1 — por
+Como **fundo de botão** com texto branco, o mesmo violeta rende 9,9:1, por
 isso a cor sólida da marca continua nos botões.
 **O que muda para você:** use `text-link` para links. Não troque por
 `text-brand-primary` no escuro.
@@ -256,7 +256,7 @@ Duas decisões menores, mas que parecem "erradas" sem contexto:
 | Ativar envio real do formulário | `.env.local`: `RESEND_API_KEY` + `RESEND_FROM` |
 
 Duas armadilhas: os textos institucionais **não** ficam em `site.ts` (só os
-dados de contato), e **não existe** `public/og/` — a imagem OG é gerada por
+dados de contato), e **não existe** `public/og/`, a imagem OG é gerada por
 `app/opengraph-image.tsx`. Se você seguiu a especificação original do briefing,
 esses dois pontos mudaram.
 
@@ -272,12 +272,12 @@ Repositório: `https://github.com/Crescendocom-IA/desenvol`
 
 1. **Importar** o repositório na Vercel. O preset Next.js é detectado sozinho;
    não há `vercel.json` porque não é preciso.
-2. **Root Directory:** a raiz do repositório (padrão) — o `package.json` está
+2. **Root Directory:** a raiz do repositório (padrão), o `package.json` está
    nela.
 3. **Build e Install Command:** deixe os padrões.
 4. **Variáveis de ambiente:** nenhuma é obrigatória para o build passar.
    Adicione conforme forem sendo obtidas, pela tabela lá em cima. Configure
-   `NEXT_PUBLIC_SITE_URL` **só no ambiente de produção** — em preview, deixe
+   `NEXT_PUBLIC_SITE_URL` **só no ambiente de produção**, em preview, deixe
    vazio para o site usar a URL do próprio deploy.
 5. **Domínio:** aponte o domínio depois do preview aprovado, e só então defina
    `NEXT_PUBLIC_SITE_URL`.
@@ -297,7 +297,7 @@ do lockfile e a instalação quebra.
 **Fallback de `:has()` no CSS de tema.** O `<html>` herda os tokens do tema por
 `html:has([data-mode="..."])`. O Firefox só ganhou `:has()` na versão 121, e
 existem dioceses rodando Firefox ESR. Por isso o `:root` também recebe os
-tokens claros, como piso. Não remova sem testar em Firefox ESR — no ESR 115 é
+tokens claros, como piso. Não remova sem testar em Firefox ESR, no ESR 115 é
 esse fallback que evita o `<html>` ficar sem tokens. ESR 128 e 140 já têm
 `:has()` e não dependem dele.
 
@@ -308,24 +308,24 @@ componente o usa hoje**. Para texto pequeno secundário, use `text-ink-soft`
 `app/globals.css`.
 
 **O formulário depende de variável de ambiente externa.** Sem `RESEND_API_KEY`
-ele cai para `mailto:` — comportamento intencional, não bug. Mas veja o aviso
+ele cai para `mailto:`, comportamento intencional, não bug. Mas veja o aviso
 no README: faça um envio de teste real antes do primeiro deploy em produção.
 
 **A página do App Vendas está `noindex` e fora do sitemap.** Se ela for
 reativada para busca, são dois lugares: remover o `robots` de
 `app/(light)/sistemas-comerciais/app-vendas/page.tsx` **e** tirar o filtro em
 `app/sitemap.ts`. Mudar só um gera sinal contraditório para o Google. A decisão
-entre manter trancada ou abrir está pendente com o cliente — ver
+entre manter trancada ou abrir está pendente com o cliente, ver
 `docs/HANDOFF_CLIENTE.md`, item 7.
 
 **Ferramentas de screenshot com `--virtual-time-budget` não são confiáveis
 aqui.** O tempo virtual congela o `requestAnimationFrame`, e tudo que aparece
-via `motion` — as revelações em scroll deste site — fica capturado no estado
+via `motion`, as revelações em scroll deste site, fica capturado no estado
 inicial, `opacity: 0`. A barra de estatísticas da home já foi fotografada como
 uma faixa vazia por causa disso, com 15 segundos de orçamento virtual, e quase
 virou investigação de um bug inexistente. Para medir layout ou conferir
 renderização use `scripts/measure.mjs`, que usa espera de relógio num Chrome
-real — é o método verificado. Vale para qualquer ferramenta que ofereça essa
+real, é o método verificado. Vale para qualquer ferramenta que ofereça essa
 flag, não só para o Chrome direto.
 
 **Conteúdo abaixo da dobra depende de JavaScript.** O componente `Reveal`
@@ -334,14 +334,14 @@ flag, não só para o Chrome direto.
 indexação (o Googlebot executa JS), mas se o JS falhar, o conteúdo abaixo do
 hero não aparece. Ver `.reports/LIGHTHOUSE.md` para a mitigação sugerida.
 
-**Performance mobile está em 87/85, abaixo de 90 — e não há defeito de
+**Performance mobile está em 87/85, abaixo de 90, e não há defeito de
 renderização por trás disso.** Sem throttling a home marca Performance 100 com
 LCP de 0,2 s, o Speed Index é 0,9 s mesmo sob throttling, e todo o carregamento
 termina em 244 ms no traço observado. O que a nota mede é peso de transferência
 sob o modelo de 4G lento: ~452 KB, dos quais 220 KB de JavaScript e 148 KB de
 fontes.
 
-Antes de otimizar mais, **re-meça contra o preview da Vercel** — a medição
+Antes de otimizar mais, **re-meça contra o preview da Vercel**, a medição
 atual é contra `localhost`, sem CDN, e o termo de transferência muda bastante
 no edge. Diagnóstico completo, com as alavancas restantes ordenadas por
 tamanho, em `.reports/LIGHTHOUSE.md`.

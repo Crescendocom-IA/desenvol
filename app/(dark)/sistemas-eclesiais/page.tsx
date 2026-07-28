@@ -29,7 +29,7 @@ export default function SistemasEclesiaisPage() {
 
         <FeatureBlock
           eyebrow="Gerenciador paroquial"
-          title="SGPAR — tudo o que sua paróquia precisa, em um único lugar"
+          title="SGPAR, tudo o que sua paróquia precisa, em um único lugar"
           description="Sistema intuitivo e de fácil controle, composto por módulos de Sacramentos, Financeiro, Dízimos, Catequese, Imobilizados e Mitra. Disponível também em versão online, com bancos de dados centralizados que simplificam backups e dão mais segurança às informações."
           highlights={[
             "Livros de Batismo, Crisma e Matrimônio com emissão de certidões e 2ª vias",
@@ -43,7 +43,7 @@ export default function SistemasEclesiaisPage() {
 
         <FeatureBlock
           eyebrow="Processos canônicos"
-          title="Tribunal Eclesiástico — agilidade para o secretariado"
+          title="Tribunal Eclesiástico, agilidade para o secretariado"
           description="Solução para a gestão de processos canônicos: cadastros, etapas do processo, geração de documentos integrada ao Microsoft Word, agendamento de audiências e depoimentos e controle de toda a parte financeira."
           highlights={[
             "Processos documentais, ordinários e breves em um só cadastro",

@@ -22,7 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return routes
     // A área do App Vendas não tem conteúdo público e está marcada como
-    // noindex — manter fora do sitemap evita sinal contraditório.
+    // noindex, manter fora do sitemap evita sinal contraditório.
     .filter((route) => route !== "/sistemas-comerciais/app-vendas")
     .map((route) => ({
       url: new URL(route, siteConfig.url).toString(),

@@ -2,7 +2,7 @@
  * Textos institucionais da Desenvol.
  *
  * Transcritos literalmente do site atual a pedido do cliente. Podemos
- * reagrupar, dividir em parágrafos e mudar o destaque visual — não reescrever.
+ * reagrupar, dividir em parágrafos e mudar o destaque visual, não reescrever.
  */
 
 export const aboutCompany = [
@@ -24,7 +24,7 @@ export const missionVisionValues = [
   { id: "valores", label: "Valores", text: values },
 ] as const;
 
-/** Bloco institucional da home — três parágrafos, exibidos como citação. */
+/** Bloco institucional da home, três parágrafos, exibidos como citação. */
 export const homeStatement = [
   "Entendemos que um relacionamento de sucesso com nossos clientes exige total comprometimento e excelência no atendimento. Este atendimento deve ser pautado no trabalho em equipe, com iniciativa, responsabilidade, honestidade e sinceridade nas relações.",
   "Acreditamos que o aprendizado contínuo é um princípio essencial para o crescimento empresarial e profissional da nossa empresa, sendo compartilhado tanto entre nossa equipe técnica quanto com nossos clientes.",

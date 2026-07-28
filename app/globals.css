@@ -4,7 +4,7 @@
 
 /*
   O tema não é escolhido pelo usuário: ele é imposto pela rota. Cada route
-  group — `(dark)` e `(light)` — envolve a página em um elemento com
+  group, `(dark)` e `(light)`, envolve a página em um elemento com
   `data-mode`, e o <html> herda os mesmos tokens via `:has()`. Herdar no
   <html> importa por dois motivos: pinta a área de overscroll com a cor
   certa e alcança conteúdo em portal (sheet, dialog), que vive fora da
@@ -144,7 +144,7 @@ html:has([data-mode="dark"]) {
   --color-ink: var(--text-primary);
   --color-ink-soft: var(--text-secondary);
   /*
-    ATENÇÃO — `text-ink-faint` NÃO passa AA em texto de corpo.
+    ATENÇÃO, `text-ink-faint` NÃO passa AA em texto de corpo.
     Medido sobre o fundo de cada tema: 3,8:1 no escuro e 3,2:1 no claro.
     O mínimo AA é 4,5:1 para texto normal e 3:1 para texto grande
     (>=24px, ou >=18,66px em peso 500+).
@@ -262,7 +262,7 @@ html:has([data-mode="dark"]) {
 }
 
 /*
-  Gradiente de título — exclusivo do dark, conforme o design system.
+  Gradiente de título, exclusivo do dark, conforme o design system.
   No light o mesmo componente cai para a cor sólida da marca.
 */
 @utility text-brand-gradient {
@@ -279,7 +279,7 @@ html:has([data-mode="light"]) .text-brand-gradient {
 }
 
 /*
-  Halos radiais — exclusivos do dark. Aplicados como pseudo-elemento
+  Halos radiais, exclusivos do dark. Aplicados como pseudo-elemento
   para não interferir no fluxo nem no contraste do conteúdo.
 */
 @utility halo {
@@ -326,7 +326,7 @@ html:has([data-mode="light"]) .halo::before {
   display: none;
 }
 
-/* Grade sutil de fundo — exclusiva do light */
+/* Grade sutil de fundo, exclusiva do light */
 @utility grid-faint {
   background-image:
     linear-gradient(to right, var(--brand-violet-pale) 1px, transparent 1px),
@@ -343,8 +343,8 @@ html:has([data-mode="dark"]) .grid-faint {
   Entrada do hero.
 
   Em CSS e não via `motion` de propósito: o motion serializa o estado inicial
-  como `style="opacity:0"` no HTML do servidor, então o título — que é o
-  elemento de LCP — só ficava visível depois da hidratação (LCP de 4,4s no
+  como `style="opacity:0"` no HTML do servidor, então o título, que é o
+  elemento de LCP, só ficava visível depois da hidratação (LCP de 4,4s no
   mobile) e sumia de vez se o JS falhasse. Como animação CSS ele pinta junto
   com o primeiro paint. Mesma curva, mesma duração e mesmo stagger do design
   system; o atraso de cada elemento vem por `animation-delay` inline.

@@ -4,7 +4,7 @@ import { ImageResponse } from "next/og";
 
 import { siteConfig } from "@/lib/data/site";
 
-export const alt = `${siteConfig.name} — ${siteConfig.tagline}`;
+export const alt = `${siteConfig.name}, ${siteConfig.tagline}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -16,7 +16,7 @@ async function dataUri(relativePath: string) {
 
 /**
  * Imagem OG única do site, gerada em build pelo `next/og` (já incluso no
- * Next — sem dependência extra). Rotas que não declaram a própria imagem
+ * Next, sem dependência extra). Rotas que não declaram a própria imagem
  * herdam esta automaticamente.
  *
  * Usa a versão reverse da marca, pela mesma razão do nav: o violeta original

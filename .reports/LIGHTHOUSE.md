@@ -1,10 +1,10 @@
-# Lighthouse — baseline v1
+# Lighthouse, baseline v1
 
 Medido em `2026-07-28` contra o build de produção (`pnpm build && pnpm start`)
 servindo em `http://localhost:3000`. Lighthouse 13.4.1, Chrome headless.
 
 Rotas de referência: a **home** (escura, leve) e o **SGPAR** (clara, a mais
-densa do site — 6 cards de módulo, 4 accordions com a lista completa de
+densa do site, 6 cards de módulo, 4 accordions com a lista completa de
 características e um diagrama SVG).
 
 Os relatórios completos ficam em `.reports/lighthouse-<rota>-<dispositivo>.html`.
@@ -35,10 +35,10 @@ Métricas de mobile (mediana):
 | Total Blocking Time | 54 ms | 69 ms | < 200 ms |
 | Cumulative Layout Shift | 0,000 | 0,000 | < 0,1 |
 
-## Antes e depois — remoção do eixo `opsz`
+## Antes e depois, remoção do eixo `opsz`
 
 A Bricolage Grotesque era carregada com dois eixos variáveis além do peso,
-`opsz` e `wdth`. O `wdth` é usado de fato — o utilitário `display-tight` aplica
+`opsz` e `wdth`. O `wdth` é usado de fato, o utilitário `display-tight` aplica
 `font-variation-settings: "wdth" 90` nos títulos grandes. **O `opsz` não era
 referenciado por nenhum seletor.**
 
@@ -52,11 +52,11 @@ referenciado por nenhum seletor.**
 | Performance mobile, SGPAR | 85 | 85 | 0 |
 
 A economia de bytes é real e verificada na rede. **O efeito na nota foi
-irrelevante** — e isso derrubou a hipótese original de que a fonte de display
+irrelevante**, e isso derrubou a hipótese original de que a fonte de display
 era a causa do LCP alto. A mudança foi mantida porque 51,9 KB a menos sem
 alterar um pixel é ganho incondicional, não porque resolveu a nota.
 
-## Por que o mobile fica abaixo de 90 — diagnóstico revisado
+## Por que o mobile fica abaixo de 90, diagnóstico revisado
 
 A primeira leitura foi que a Bricolage gatilhava um candidato tardio de LCP ao
 terminar de baixar. Removido o eixo e economizados 51 KB, a nota não se moveu.
@@ -68,7 +68,7 @@ para isso:
 | Medição | Resultado |
 | --- | --- |
 | Sem throttling (`--throttling-method=provided`) | **Performance 100**, FCP 0,1 s, **LCP 0,2 s** |
-| Speed Index sob throttling simulado | **0,9 s** — a página está visualmente completa |
+| Speed Index sob throttling simulado | **0,9 s**, a página está visualmente completa |
 | Fim da última requisição no traço observado | **244 ms** (28 requisições, ~452 KB) |
 
 Se a página fica visualmente completa em 0,9 s e todo o carregamento termina em
@@ -94,8 +94,8 @@ página:
 requisições e o parse do JavaScript a 1/4 da velocidade de CPU. Os ~4 s são o
 modelo funcionando corretamente, não um bug nosso.
 
-Isso **não** é desculpa: numa conexão móvel ruim de verdade — secretaria
-paroquial no interior — o carregamento seria mesmo mais lento. Mas duas
+Isso **não** é desculpa: numa conexão móvel ruim de verdade, secretaria
+paroquial no interior, o carregamento seria mesmo mais lento. Mas duas
 ressalvas importam para interpretar o número:
 
 1. A medição é contra `localhost`, sem CDN. Na Vercel os assets saem do edge,
@@ -117,13 +117,13 @@ mais contra localhost.
    eliminar.
 2. **Fontes, 148,3 KB em 3 famílias.** Já sem o eixo inútil. Reduzir mais exige
    decisão de design: cair para duas famílias, ou usar `display: "optional"` na
-   Bricolage — que evita o repaint tardio ao custo de alguns visitantes verem a
+   Bricolage, que evita o repaint tardio ao custo de alguns visitantes verem a
    fonte de fallback na primeira visita.
 3. **`legacy-javascript`, 14 KB** de polyfills que o Next injeta pelo
    `browserslist` padrão. Só vale mexer depois de definir com o cliente quais
-   navegadores precisam de suporte — lembrando que há dioceses em Firefox ESR.
+   navegadores precisam de suporte, lembrando que há dioceses em Firefox ESR.
 
-## Best Practices 96 — falso positivo local, não corrija
+## Best Practices 96, falso positivo local, não corrija
 
 Duas requisições 404 no console:
 
@@ -134,21 +134,20 @@ http://localhost:3000/_vercel/speed-insights/script.js
 
 São os scripts do `@vercel/analytics` e do `@vercel/speed-insights`. **Esses
 endpoints são injetados pela infraestrutura da Vercel em tempo de deploy e não
-existem em `next start` local** — o 404 é o comportamento esperado fora da
+existem em `next start` local**, o 404 é o comportamento esperado fora da
 Vercel, não um erro do site.
 
 Não tente "consertar" removendo os componentes `<Analytics />` e
 `<SpeedInsights />` do `app/layout.tsx`: isso desliga a telemetria em produção
 para eliminar um erro que só aparece em desenvolvimento. Em produção esta
-categoria deve marcar 100 — confirme na primeira medição do preview.
+categoria deve marcar 100, confirme na primeira medição do preview.
 
 ## O que foi corrigido nesta rodada
 
 **Hero deixou de depender de JavaScript para ficar visível.**
 
 O `motion` serializa o estado inicial da animação como atributo `style` no HTML
-do servidor. A home era entregue com **19 elementos em `opacity:0`** —
-incluindo o `<h1>` do hero. Eles só apareciam depois da hidratação, e se o
+do servidor. A home era entregue com **19 elementos em `opacity:0`** , incluindo o `<h1>` do hero. Eles só apareciam depois da hidratação, e se o
 JavaScript falhasse, o hero simplesmente não aparecia.
 
 A entrada dos dois heroes passou a ser animação CSS (`rise-in` em
@@ -156,7 +155,7 @@ A entrada dos dois heroes passou a ser animação CSS (`rise-in` em
 0,08 s do design system. O visual é idêntico. `HeroDark` e `HeroLight`
 deixaram de ser Client Components.
 
-Foi mantido por consertar um defeito real de robustez, não por métrica — o
+Foi mantido por consertar um defeito real de robustez, não por métrica, o
 ganho medido foi de 1 ponto. Os 15 elementos que ainda saem em `opacity:0` são
 os blocos abaixo da dobra, que usam `whileInView`; ver abaixo.
 
@@ -173,7 +172,7 @@ Nenhuma bloqueia o handoff.
    abaixo do hero não aparece. Não dá para resolver só com CSS enquanto
    `animation-timeline: view()` for exclusivo do Chrome. Mitigação barata: um
    `<noscript>` com `[style*="opacity:0"]{opacity:1!important}`.
-3. **`unused-javascript`** — 24 KB, economia estimada de ~150 ms, vindo dos
+3. **`unused-javascript`**, 24 KB, economia estimada de ~150 ms, vindo dos
    chunks do framework. Sem ação prática do nosso lado.
 
 ## Como reproduzir
@@ -197,7 +196,7 @@ verdade).
 Duas ressalvas ao rodar no Windows:
 
 - O `chrome-launcher` falha ao remover o próprio diretório temporário (`EPERM`)
-  e o comando sai com código 1 — **sempre depois** de escrever o relatório.
+  e o comando sai com código 1, **sempre depois** de escrever o relatório.
   Valide pela existência do arquivo, não pelo exit code.
 - Rode pelo bash. No PowerShell, `--chrome-flags="--headless=new --no-sandbox"`
   é quebrado nos espaços e o Chrome sobe sem as flags.

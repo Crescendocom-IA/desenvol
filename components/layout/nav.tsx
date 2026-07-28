@@ -13,7 +13,7 @@ export function Nav({ mode }: { mode: LogoMode }) {
   return (
     <header className="sticky top-0 z-50 border-b border-hairline bg-bg/85 backdrop-blur-md supports-[backdrop-filter]:bg-bg/70">
       <div className="mx-auto flex h-18 max-w-6xl items-center justify-between gap-4 px-6 md:px-10">
-        <Link href="/" aria-label="Desenvol Informática — página inicial">
+        <Link href="/" aria-label="Desenvol Informática, página inicial">
           {/* Acima da dobra em toda página: carrega sem lazy. */}
           <Logo mode={mode} priority />
         </Link>

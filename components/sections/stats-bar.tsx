@@ -11,7 +11,7 @@ export type Stat = {
  * Números institucionais em faixa horizontal.
  *
  * Layout: 2 colunas até `lg`, 4 colunas a partir daí. As divisórias seguem a
- * grade — verticais entre colunas, horizontal apenas na quebra de linha do
+ * grade, verticais entre colunas, horizontal apenas na quebra de linha do
  * layout de 2 colunas.
  */
 export function StatsBar({ stats }: { stats: readonly Stat[] }) {

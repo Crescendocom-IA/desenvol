@@ -7,7 +7,7 @@ import { siteConfig } from "@/lib/data/site";
 import "./globals.css";
 
 /*
-  A Bricolage é a fonte de display e o maior arquivo do site — ela gatilha o
+  A Bricolage é a fonte de display e o maior arquivo do site, ela gatilha o
   candidato final de LCP quando termina de baixar. Por isso carregamos só os
   eixos que o CSS realmente lê.
 
@@ -15,7 +15,7 @@ import "./globals.css";
   `font-variation-settings: "wdth" 90` nos títulos grandes, que é um efeito
   definido no design system.
 
-  `opsz` foi removido por não ser referenciado por nenhum seletor — nem via
+  `opsz` foi removido por não ser referenciado por nenhum seletor, nem via
   `font-optical-sizing`, nem via `font-variation-settings`. Como nada consome
   esse eixo, tirá-lo não altera um pixel do que é renderizado. Antes de
   reintroduzir, confirme que existe CSS que o use.
@@ -42,8 +42,8 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} — ${siteConfig.tagline}`,
-    template: `%s — ${siteConfig.name}`,
+    default: `${siteConfig.name}, ${siteConfig.tagline}`,
+    template: `%s, ${siteConfig.name}`,
   },
   description: siteConfig.description,
   applicationName: siteConfig.name,

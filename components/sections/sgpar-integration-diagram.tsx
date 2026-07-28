@@ -19,7 +19,7 @@ const CONNECTORS = [
 
 /**
  * Resumo da integração dos módulos: os seis convergem para a base única do
- * SGPAR. Desenhado em SVG — não é uma reprodução da imagem antiga.
+ * SGPAR. Desenhado em SVG, não é uma reprodução da imagem antiga.
  *
  * Abaixo de `md` o diagrama daria texto ilegível, então a mesma informação
  * aparece como lista. O SVG carrega <title>/<desc> para leitores de tela.

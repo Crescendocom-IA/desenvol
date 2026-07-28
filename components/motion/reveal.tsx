@@ -13,7 +13,7 @@ type RevealProps = {
 
 /**
  * Revelação de conteúdo ao entrar na viewport. Dispara uma única vez e não
- * faz parallax — conforme o design system. Com `prefers-reduced-motion`,
+ * faz parallax, conforme o design system. Com `prefers-reduced-motion`,
  * o conteúdo aparece direto no estado final.
  *
  * Renderiza sempre uma <div>: quando precisar de outra semântica (um <li>,

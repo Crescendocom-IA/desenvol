@@ -21,7 +21,7 @@ const delay = (index: number) => ({
  * Hero das páginas de conteúdo: mesma estrutura do HeroDark, tipografia mais
  * compacta e grade sutil no lugar dos halos.
  *
- * Server Component pelo mesmo motivo do HeroDark — ver a nota em globals.css.
+ * Server Component pelo mesmo motivo do HeroDark, ver a nota em globals.css.
  */
 export function HeroLight({
   eyebrow,

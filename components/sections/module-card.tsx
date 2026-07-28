@@ -7,7 +7,7 @@ export type ModuleCardProps = {
 };
 
 /**
- * Card compacto e sem link — usado nas grades de módulos e de características,
+ * Card compacto e sem link, usado nas grades de módulos e de características,
  * onde cada item é conteúdo em si, não um destino de navegação.
  */
 export function ModuleCard({ name, description, icon: Icon }: ModuleCardProps) {

@@ -1,16 +1,16 @@
 /**
- * Sistemas comerciais — ERP e NF-e (DCOM).
+ * Sistemas comerciais, ERP e NF-e (DCOM).
  * Textos transcritos literalmente do material do cliente.
  */
 
 export const erpContent = {
-  /** Parágrafo 1 — o cenário de mercado. */
+  /** Parágrafo 1, o cenário de mercado. */
   context:
     "Com a otimização das rotinas trabalhistas nos dias atuais, as empresas enfrentam a necessidade de investir constantemente nos melhores processos de gestão para alcançar maior competitividade no mercado. A Desenvol Informática, uma empresa tradicional no desenvolvimento de softwares de gestão, oferece um sistema ERP totalmente preparado para atender às mais variadas exigências.",
-  /** Parágrafo 2 — o que o sistema é. */
+  /** Parágrafo 2, o que o sistema é. */
   solution:
     "O Sistema ERP – Desenvol é uma solução eficiente e imediata, que se adapta a diferentes tipos de empresas. Ele atende de forma integrada a diversos setores, como vendas, estoque e financeiro, além de realizar a emissão de notas e cupons fiscais. O sistema também oferece uma ampla gama de relatórios detalhados, promovendo um melhor gerenciamento da informação.",
-  /** Parágrafo 3 — como ele se ajusta ao cliente. */
+  /** Parágrafo 3, como ele se ajusta ao cliente. */
   flexibility:
     "O ERP – Desenvol é um software completo e flexível, que se ajusta às necessidades e exigências de seus usuários, agilizando significativamente o tempo de processo necessário para a execução das tarefas diárias.",
 } as const;

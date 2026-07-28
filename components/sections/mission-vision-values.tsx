@@ -5,7 +5,7 @@ import { STAGGER_STEP } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
 type MissionVisionValuesProps = {
-  /** `lg` amplia a tipografia — usado na página /sobre. */
+  /** `lg` amplia a tipografia, usado na página /sobre. */
   size?: "md" | "lg";
   className?: string;
 };

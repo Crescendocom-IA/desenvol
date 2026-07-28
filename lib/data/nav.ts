@@ -30,7 +30,7 @@ export const navItems: NavItem[] = [
   },
 ];
 
-/** Todas as rotas internas do site — base do sitemap. */
+/** Todas as rotas internas do site, base do sitemap. */
 export const routes = [
   "/",
   "/sobre",

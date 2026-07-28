@@ -7,7 +7,7 @@
  * Base de canonical, og:url, sitemap e robots.
  *
  * Lida apenas em contexto de servidor (lib/seo, app/sitemap, app/robots,
- * app/layout) — nenhum componente de cliente lê `siteConfig.url`.
+ * app/layout), nenhum componente de cliente lê `siteConfig.url`.
  *
  * TODO(cliente): confirmar o domínio final de produção. Até lá,
  * `NEXT_PUBLIC_SITE_URL` corrige o domínio pelo painel da Vercel, sem deploy.

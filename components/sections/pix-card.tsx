@@ -25,7 +25,7 @@ type PixCardProps = {
  *
  * TODO(cliente): o site atual exibe uma imagem de QR code gerada pelo banco.
  * Precisamos do arquivo oficial (ou do payload BR Code emitido pelo Sicredi)
- * para reproduzi-lo — gerar um QR a partir de dados inferidos poderia
+ * para reproduzi-lo, gerar um QR a partir de dados inferidos poderia
  * direcionar contribuições para um payload inválido. Até lá, exibimos a chave
  * copiável, que funciona em qualquer app bancário.
  */

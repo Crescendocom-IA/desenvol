@@ -23,7 +23,7 @@ export const metadata = buildMetadata({
   path: "/sistemas-comerciais/erp",
 });
 
-/** Setores citados no texto do cliente — nada foi acrescentado à lista. */
+/** Setores citados no texto do cliente, nada foi acrescentado à lista. */
 const coveredAreas = [
   {
     name: "Vendas",
@@ -62,7 +62,7 @@ export default function ErpPage() {
     <>
       <HeroLight
         eyebrow="Sistemas comerciais / ERP"
-        title="ERP Desenvol — gestão integrada de ponta a ponta"
+        title="ERP Desenvol, gestão integrada de ponta a ponta"
         titleAccentPart="gestão integrada"
         subtitle={erpContent.solution}
         primaryCta={{ label: "Falar com a Desenvol", href: "/contato" }}

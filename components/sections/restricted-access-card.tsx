@@ -14,7 +14,7 @@ import { cn } from "@/lib/utils";
  *
  * O site atual protege esta página por senha. Aqui reproduzimos apenas o
  * comportamento visível: o formulário não valida nada e não envia nada a
- * lugar algum — quem precisa de acesso é encaminhado ao contato.
+ * lugar algum, quem precisa de acesso é encaminhado ao contato.
  *
  * TODO(cliente): definir se o acesso será migrado para autenticação real
  * (e contra qual base de usuários) ou se permanece como encaminhamento.

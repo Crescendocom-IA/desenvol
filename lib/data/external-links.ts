@@ -1,6 +1,6 @@
 /**
  * Links externos herdados do site atual.
- * As URLs são preservadas exatamente como estão hoje — não reescrever.
+ * As URLs são preservadas exatamente como estão hoje, não reescrever.
  */
 
 export type ExternalLink = {
@@ -9,7 +9,7 @@ export type ExternalLink = {
   description?: string;
 };
 
-/** Área "Acesso a clientes" — os portais SGPAR ONLINE e correlatos. */
+/** Área "Acesso a clientes", os portais SGPAR ONLINE e correlatos. */
 export const clientPortals: ExternalLink[] = [
   {
     label: "Plantão do dízimo",

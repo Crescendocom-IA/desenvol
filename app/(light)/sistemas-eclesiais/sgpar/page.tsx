@@ -15,7 +15,7 @@ import { STAGGER_STEP } from "@/lib/motion";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "SGPAR — Gerenciador Paroquial",
+  title: "SGPAR, Gerenciador Paroquial",
   description:
     "Sistema de gestão paroquial com módulos de Sacramentos, Financeiro, Dízimo, Catequese, Imobilizados e MITRA. Disponível também em versão online, com base de dados centralizada.",
   path: "/sistemas-eclesiais/sgpar",
@@ -28,7 +28,7 @@ export default function SgparPage() {
     <>
       <HeroLight
         eyebrow="Sistemas eclesiais / SGPAR"
-        title="SGPAR — Gerenciador Paroquial"
+        title="SGPAR, Gerenciador Paroquial"
         titleAccentPart="Gerenciador Paroquial"
         subtitle={introOverview}
         primaryCta={{ label: "Falar com a Desenvol", href: "/contato" }}
@@ -134,7 +134,7 @@ export default function SgparPage() {
             <p className="text-ink-soft text-pretty">
               O lançamento do dízimo encerra no financeiro, a catequese alimenta
               o dízimo catequético e os balancetes chegam prontos à
-              contabilidade — porque tudo compartilha a mesma base.
+              contabilidade, porque tudo compartilha a mesma base.
             </p>
           </Reveal>
 

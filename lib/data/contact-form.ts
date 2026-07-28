@@ -2,7 +2,7 @@
  * Contrato do formulário de contato.
  *
  * Vive fora de `actions.ts` porque um módulo `"use server"` só pode exportar
- * funções assíncronas — constantes e tipos precisam de outro lugar.
+ * funções assíncronas, constantes e tipos precisam de outro lugar.
  */
 
 export const SUBJECTS = [

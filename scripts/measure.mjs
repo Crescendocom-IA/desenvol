@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 /**
- * measure.mjs — mede geometria de layout num Chrome real, sem navegador humano.
+ * measure.mjs, mede geometria de layout num Chrome real, sem navegador humano.
  *
  * Existe porque nem toda verificação é métrica: "o hero está alto demais" ou
  * "a próxima seção aparece na dobra" só se responde com números do layout
  * renderizado. Sem isso sobra estimar, e estimativa erra.
  *
- * Node nativo — fala CDP pelo WebSocket embutido (Node 21+). Sem puppeteer,
+ * Node nativo, fala CDP pelo WebSocket embutido (Node 21+). Sem puppeteer,
  * sem playwright, sem nenhuma dependência.
  *
  * ---------------------------------------------------------------------------
@@ -36,7 +36,7 @@
  *
  * `dobra` é `innerHeight`: tudo com `bottom` menor ou igual a esse valor está
  * visível sem rolar. Para cada seção filha de <main>, `visivelNaDobra` diz
- * quantos pixels dela cabem na primeira tela — negativo significa que a seção
+ * quantos pixels dela cabem na primeira tela, negativo significa que a seção
  * anterior passou da dobra.
  *
  * `ocultosPorOpacidade` conta elementos com `opacity` computada igual a zero.
@@ -44,13 +44,13 @@
  * dobra é sinal de conteúdo que depende de JavaScript para existir.
  *
  * ---------------------------------------------------------------------------
- * ARMADILHA — não use --virtual-time-budget para isto
+ * ARMADILHA, não use --virtual-time-budget para isto
  * ---------------------------------------------------------------------------
  *
  * O caminho óbvio seria `chrome --headless --screenshot --virtual-time-budget`.
  * Ele mente. O tempo virtual congela o `requestAnimationFrame`, e qualquer
- * componente cuja aparição dependa de rAF — toda a biblioteca `motion`, que é
- * o que anima as revelações deste site — fica no estado inicial.
+ * componente cuja aparição dependa de rAF, toda a biblioteca `motion`, que é
+ * o que anima as revelações deste site, fica no estado inicial.
  *
  * Na prática: a barra de estatísticas da home foi capturada como uma faixa
  * vazia, e por pouco não viramos a noite atrás de um bug que não existia. Este
@@ -338,7 +338,7 @@ function report(data) {
   if (ocultosPorOpacidade.acimaDaDobra > 0) {
     // Sem listar quem é, este aviso vira falso alarme: tooltip de hover é
     // `opacity: 0` por projeto. Cabe a quem lê separar intenção de bug.
-    console.log("  acima da dobra — confira se cada um é intencional:");
+    console.log("  acima da dobra, confira se cada um é intencional:");
     for (const el of ocultosPorOpacidade.detalheAcimaDaDobra) {
       console.log(
         `    ${el.seletor}  top=${el.top} bottom=${el.bottom} ` +
@@ -347,7 +347,7 @@ function report(data) {
       );
     }
     console.log(
-      "  tooltip de hover é esperado; bloco de conteúdo não — esse dependeria de JS.",
+      "  tooltip de hover é esperado; bloco de conteúdo não, esse dependeria de JS.",
     );
   }
   console.log();

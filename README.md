@@ -17,7 +17,7 @@ Node 20+ e pnpm 11 (fixado em `packageManager`).
 
 ## Variáveis de ambiente
 
-Copie `.env.example` para `.env.local`. **Todas são opcionais** — sem nenhuma
+Copie `.env.example` para `.env.local`. **Todas são opcionais**, sem nenhuma
 delas o site sobe inteiro e funciona.
 
 ```bash
@@ -39,7 +39,7 @@ RESEND_FROM=
 
 **Envie um e-mail de teste real** pelo formulário, com `RESEND_API_KEY`
 configurada e domínio verificado no Resend. Esse caminho nunca foi exercitado
-de ponta a ponta — o desenvolvimento inteiro rodou no fallback.
+de ponta a ponta, o desenvolvimento inteiro rodou no fallback.
 
 O fallback `mailto:` é comportamento **correto** quando não há chave, e é o que
 está ativo hoje. Mas não é o comportamento pretendido em produção: ele exige
@@ -51,31 +51,31 @@ lá. Quem não tiver, não conclui o contato.
 Vercel, com detecção automática de Next.js. Todas as rotas são estáticas; a
 única parte dinâmica é a server action do formulário.
 
-O passo a passo completo — root directory, variáveis por ambiente, domínio,
-e por que o `packageManager` não deve ser alterado — está em
+O passo a passo completo, root directory, variáveis por ambiente, domínio,
+e por que o `packageManager` não deve ser alterado, está em
 [`docs/HANDOFF_DEV.md`](docs/HANDOFF_DEV.md).
 
 ## Estrutura
 
-- `app/` — as 12 rotas, divididas em dois route groups: `(dark)` para as
+- `app/`, as 12 rotas, divididas em dois route groups: `(dark)` para as
   páginas institucionais curtas e `(light)` para as de conteúdo denso. O tema é
   imposto pela rota; não há toggle.
-- `components/` — `brand/` (logo), `layout/` (casca, nav, footer),
+- `components/`, `brand/` (logo), `layout/` (casca, nav, footer),
   `sections/` (blocos de página), `ui/` (primitivos shadcn), `motion/`.
-- `lib/data/` — **todo o conteúdo institucional**, transcrito literalmente do
+- `lib/data/`, **todo o conteúdo institucional**, transcrito literalmente do
   site atual. É aqui que se edita texto, não nos componentes.
-- `lib/` — `seo.ts` (metadata por página), `cta.ts`, `motion.ts`, `utils.ts`.
-- `public/brand/` — os quatro recortes da marca servidos ao navegador. A arte
+- `lib/`, `seo.ts` (metadata por página), `cta.ts`, `motion.ts`, `utils.ts`.
+- `public/brand/`, os quatro recortes da marca servidos ao navegador. A arte
   oficial do cliente fica em `docs/brand/` e **não** é publicada.
 
 ## Documentação
 
-- [`docs/HANDOFF_CLIENTE.md`](docs/HANDOFF_CLIENTE.md) — o que foi entregue e o
+- [`docs/HANDOFF_CLIENTE.md`](docs/HANDOFF_CLIENTE.md), o que foi entregue e o
   que falta o cliente fornecer, em linguagem de negócio.
-- [`docs/HANDOFF_DEV.md`](docs/HANDOFF_DEV.md) — onboarding técnico: decisões
+- [`docs/HANDOFF_DEV.md`](docs/HANDOFF_DEV.md), onboarding técnico: decisões
   de arquitetura, mapa de "quero mudar X → arquivo Y", deploy e riscos
   conhecidos.
-- [`.reports/LIGHTHOUSE.md`](.reports/LIGHTHOUSE.md) — baseline de performance,
+- [`.reports/LIGHTHOUSE.md`](.reports/LIGHTHOUSE.md), baseline de performance,
   acessibilidade e SEO, com causa raiz do que está abaixo de 90.
 
 ## Licença

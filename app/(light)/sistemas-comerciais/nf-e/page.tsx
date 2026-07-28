@@ -8,7 +8,7 @@ import { nfeContent, nfeFeatures } from "@/lib/data/commercial";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "NF-e — DCOM",
+  title: "NF-e, DCOM",
   description:
     "O DCOM oferece todos os recursos necessários para a emissão, envio e gerenciamento de Notas Fiscais Eletrônicas, com impressão do DANFE, envio de XML e alerta de validade do certificado digital.",
   path: "/sistemas-comerciais/nf-e",
@@ -19,7 +19,7 @@ export default function NfePage() {
     <>
       <HeroLight
         eyebrow="Sistemas comerciais / NF-e"
-        title="NF-e com o DCOM — muito além de um validador"
+        title="NF-e com o DCOM, muito além de um validador"
         titleAccentPart="o DCOM"
         subtitle={nfeContent.solution}
         primaryCta={{ label: "Falar com a Desenvol", href: "/contato" }}
@@ -51,7 +51,7 @@ export default function NfePage() {
                 O que acompanha o DCOM
               </h2>
               <p className="text-ink-soft text-pretty">
-                Recursos que resolvem a rotina de quem emite nota todo dia — e o
+                Recursos que resolvem a rotina de quem emite nota todo dia, e o
                 alerta que evita a surpresa do certificado vencido.
               </p>
             </Reveal>

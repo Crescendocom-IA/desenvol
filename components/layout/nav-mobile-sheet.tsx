@@ -23,7 +23,7 @@ export function NavMobileSheet({ mode }: { mode: LogoMode }) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
-  // Fecha ao navegar — a rota muda sem desmontar o sheet.
+  // Fecha ao navegar, a rota muda sem desmontar o sheet.
   useEffect(() => {
     setOpen(false);
   }, [pathname]);

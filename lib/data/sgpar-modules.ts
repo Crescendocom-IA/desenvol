@@ -9,7 +9,7 @@ import {
 } from "lucide-react";
 
 /**
- * Conteúdo do SGPAR — Gerenciador Paroquial.
+ * Conteúdo do SGPAR, Gerenciador Paroquial.
  * Textos transcritos literalmente do material do cliente.
  */
 
