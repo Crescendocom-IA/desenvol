@@ -39,14 +39,15 @@ export function buildMetadata({
       type: "website",
       locale: "pt_BR",
       siteName: siteConfig.name,
-      title: `${title}, ${siteConfig.name}`,
+      // Mesmo separador do <title> em app/layout.tsx: middle dot.
+      title: `${title} · ${siteConfig.name}`,
       description,
       url,
       images: [OG_IMAGE],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${title}, ${siteConfig.name}`,
+      title: `${title} · ${siteConfig.name}`,
       description,
       images: [OG_IMAGE.url],
     },

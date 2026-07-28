@@ -8,7 +8,7 @@ import { nfeContent, nfeFeatures } from "@/lib/data/commercial";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "NF-e, DCOM",
+  title: "NF-e · DCOM",
   description:
     "O DCOM oferece todos os recursos necessários para a emissão, envio e gerenciamento de Notas Fiscais Eletrônicas, com impressão do DANFE, envio de XML e alerta de validade do certificado digital.",
   path: "/sistemas-comerciais/nf-e",

@@ -42,8 +42,10 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name}, ${siteConfig.tagline}`,
-    template: `%s, ${siteConfig.name}`,
+    // Middle dot separa título da página e nome do site. Vírgula faria o
+    // título ler como lista de itens na aba e no resultado de busca.
+    default: `${siteConfig.name} · ${siteConfig.tagline}`,
+    template: `%s · ${siteConfig.name}`,
   },
   description: siteConfig.description,
   applicationName: siteConfig.name,
