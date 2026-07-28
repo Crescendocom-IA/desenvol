@@ -38,6 +38,11 @@ yarn-error.log*
 # vercel
 .vercel
 
+# relatórios do lighthouse: o resumo em .md é versionado, os artefatos não
+# (cada HTML tem ~800 KB e cada JSON bruto ~700 KB)
+.reports/*.html
+.reports/*.json
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
