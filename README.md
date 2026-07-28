@@ -1,113 +1,82 @@
-# Site institucional — Desenvol Informática
+# Site institucional Desenvol
 
-Substituto do `desenvol.com.br` atual (WordPress, 2019). Next.js 15 com App
-Router, Tailwind v4 e shadcn/ui.
+Novo site da Desenvol Informática (Londrina/PR), em substituição ao WordPress
+de 2019. Next.js 15, Tailwind v4 e shadcn/ui, hospedado na Vercel.
 
-## Rodando localmente
+## Rodando local
 
 ```bash
 pnpm install
-pnpm dev
+pnpm dev              # desenvolvimento, porta 3000
+pnpm build            # build de produção
+pnpm start            # servir o build
+pnpm lint             # verificação
 ```
 
-Outros comandos: `pnpm build`, `pnpm start`, `pnpm lint`.
+Node 20+ e pnpm 11 (fixado em `packageManager`).
 
 ## Variáveis de ambiente
 
-Copie `.env.example` para `.env.local`. Todas são opcionais — sem elas o site
-sobe inteiro, com o formulário de contato caindo para `mailto:`.
+Copie `.env.example` para `.env.local`. **Todas são opcionais** — sem nenhuma
+delas o site sobe inteiro e funciona.
 
-| Variável | Efeito se ausente |
-| --- | --- |
-| `NEXT_PUBLIC_SITE_URL` | Canonical/sitemap usam `https://www.desenvol.com.br` |
-| `RESEND_API_KEY` | Formulário devolve `mailto:` preenchido |
-| `RESEND_FROM` | Usa o remetente de teste do Resend |
+```bash
+# Domínio de produção. Usado em canonical, og:url, sitemap.xml e robots.txt.
+# Sem isso: usa https://www.desenvol.com.br; em preview na Vercel, cai para a
+# URL do próprio deploy.
+NEXT_PUBLIC_SITE_URL=
 
-## Tema por rota
+# Envio do formulário de contato.
+# Sem isso: a server action devolve um mailto: já preenchido.
+RESEND_API_KEY=
 
-Não existe toggle de tema. Cada route group fixa o seu:
+# Remetente dos e-mails. Precisa ser um domínio verificado no Resend.
+# Sem isso: usa o remetente de teste onboarding@resend.dev.
+RESEND_FROM=
+```
 
-- `app/(dark)/` — home, `/sobre` e as duas landings de categoria. Páginas
-  curtas, de impacto, com halos radiais.
-- `app/(light)/` — páginas de produto, mídia e contato. Listas longas e
-  formulários, onde leitura extensa no escuro cansa.
+## ⚠️ Antes do primeiro deploy em produção
 
-O layout de cada grupo envolve a página em um elemento com `data-mode`, e o
-`<html>` herda os mesmos tokens via `:has()` em `app/globals.css`. Isso pinta a
-área de overscroll com a cor certa e alcança conteúdo em portal (sheet,
-dialog), que vive fora da árvore do route group.
+**Envie um e-mail de teste real** pelo formulário, com `RESEND_API_KEY`
+configurada e domínio verificado no Resend. Esse caminho nunca foi exercitado
+de ponta a ponta — o desenvolvimento inteiro rodou no fallback.
 
-## Marca
-
-`public/brand/desenvol-logo.png` é o arquivo original do cliente — um lockup
-vertical sobre fundo branco, com o topo do símbolo cortado na borda da imagem
-e ruído de compressão no fundo. Dele foram recortados, com o fundo removido:
-
-| Asset | Uso |
-| --- | --- |
-| `desenvol-mark.png` | Símbolo, cores da marca — superfícies claras |
-| `desenvol-wordmark.png` | Wordmark violeta — superfícies claras |
-| `desenvol-mark-reverse.png` | Símbolo em reverse — superfícies escuras |
-| `desenvol-wordmark-reverse.png` | Wordmark em reverse — superfícies escuras |
-
-O reverse existe porque o violeta `#47328E` rende 1,95:1 sobre o fundo escuro
-`#0E0A22` e ficaria ilegível. Nele o violeta vira quase-branco e o arco
-azul-céu da marca é preservado. `SiteShell` passa o tema da rota até o
-`<Logo />`, então cada página carrega só a variante que usa.
-
-Para regenerar os recortes é preciso o arquivo original — veja o histórico do
-commit "usa a logo original do cliente" para o script de extração.
-
-## Onde ficam os textos
-
-Todo o conteúdo institucional está em `lib/data/`, transcrito literalmente do
-material do cliente:
-
-| Arquivo | Conteúdo |
-| --- | --- |
-| `site.ts` | Endereço, telefone, CNPJ, PIX, números da home |
-| `institutional.ts` | Sobre, missão, visão, valores, Missas DataShow |
-| `products.ts` | Os cinco produtos e seus destinos |
-| `sgpar-modules.ts` | Módulos do SGPAR e características detalhadas |
-| `tribunal-features.ts` | Características do Tribunal Eclesiástico |
-| `commercial.ts` | Textos do ERP e da NF-e |
-| `external-links.ts` | Portais de cliente, suporte e Missas DataShow |
-| `nav.ts` | Estrutura do menu e lista de rotas (base do sitemap) |
-
-Esses textos são preservados palavra por palavra. Reagrupar e destacar é
-permitido; reescrever não.
-
-## Pendências com o cliente
-
-Marcadas no código como `// TODO(cliente):`:
-
-- **Logo em vetor (SVG/AI/EPS).** O PNG fornecido é raster, tem o topo do
-  símbolo cortado na borda da imagem e artefatos de compressão. Com o vetor,
-  a marca fica nítida em qualquer tamanho e o reverse sai exato
-- Aprovação do uso reverse da marca sobre fundo escuro
-- Link real do Joinchat/WhatsApp (hoje: `wa.me` com o telefone comercial)
-- Imagem oficial do QR code PIX emitida pelo Sicredi
-- Remetente verificado no Resend e `RESEND_API_KEY` de produção
-- Domínio final de produção
-- Horário de atendimento para a página de contato
-- Captura de tela de um slide das Missas DataShow
-- Destino definitivo da área do App Vendas (autenticação real ou
-  encaminhamento para contato, como está hoje)
+O fallback `mailto:` é comportamento **correto** quando não há chave, e é o que
+está ativo hoje. Mas não é o comportamento pretendido em produção: ele exige
+que o visitante tenha um programa de e-mail configurado e clique em "enviar"
+lá. Quem não tiver, não conclui o contato.
 
 ## Deploy
 
-Vercel, com detecção automática de Next.js — não há `vercel.json` porque não é
-preciso. Todas as rotas são estáticas; a única parte dinâmica é a server action
-do formulário de contato.
+Vercel, com detecção automática de Next.js. Todas as rotas são estáticas; a
+única parte dinâmica é a server action do formulário.
 
-O `packageManager` do `package.json` fixa o pnpm 11.17.0, a mesma versão que
-gerou o `pnpm-lock.yaml`. Isso importa: as aprovações de build scripts (sharp,
-unrs-resolver) ficam em `pnpm-workspace.yaml` sob a chave `allowBuilds`, que só
-existe a partir do pnpm 11.
+O passo a passo completo — root directory, variáveis por ambiente, domínio,
+e por que o `packageManager` não deve ser alterado — está em
+[`docs/HANDOFF_DEV.md`](docs/HANDOFF_DEV.md).
 
-Ao criar o projeto na Vercel:
+## Estrutura
 
-1. Root Directory: a raiz do repositório (padrão) — o `package.json` está nela
-2. Framework Preset: Next.js (detectado sozinho)
-3. Variáveis de ambiente: as da tabela acima, conforme forem sendo obtidas
-4. Depois de apontar o domínio, definir `NEXT_PUBLIC_SITE_URL` para ele
+- `app/` — as 12 rotas, divididas em dois route groups: `(dark)` para as
+  páginas institucionais curtas e `(light)` para as de conteúdo denso. O tema é
+  imposto pela rota; não há toggle.
+- `components/` — `brand/` (logo), `layout/` (casca, nav, footer),
+  `sections/` (blocos de página), `ui/` (primitivos shadcn), `motion/`.
+- `lib/data/` — **todo o conteúdo institucional**, transcrito literalmente do
+  site atual. É aqui que se edita texto, não nos componentes.
+- `lib/` — `seo.ts` (metadata por página), `cta.ts`, `motion.ts`, `utils.ts`.
+- `public/brand/` — logo original do cliente e os recortes derivados dela.
+
+## Documentação
+
+- [`docs/HANDOFF_CLIENTE.md`](docs/HANDOFF_CLIENTE.md) — o que foi entregue e o
+  que falta o cliente fornecer, em linguagem de negócio.
+- [`docs/HANDOFF_DEV.md`](docs/HANDOFF_DEV.md) — onboarding técnico: decisões
+  de arquitetura, mapa de "quero mudar X → arquivo Y", deploy e riscos
+  conhecidos.
+- [`.reports/LIGHTHOUSE.md`](.reports/LIGHTHOUSE.md) — baseline de performance,
+  acessibilidade e SEO, com causa raiz do que está abaixo de 90.
+
+## Licença
+
+Proprietário. © 2026 Desenvol Informática. Todos os direitos reservados.
